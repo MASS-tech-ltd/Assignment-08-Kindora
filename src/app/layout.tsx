@@ -23,6 +23,9 @@ const kaushanScript = Kaushan_Script({
 export const metadata: Metadata = {
   title: "Kindora",
   description: "Social development platform",
+  icons: {
+    icon: "/images/fav-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
