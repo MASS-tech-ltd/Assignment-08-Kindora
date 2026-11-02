@@ -3,7 +3,7 @@ import { ArrowUpRight, CalendarPlus } from "lucide-react";
 
 export default function Banner() {
   return (
-    <section className="relative flex min-h-[680px] items-center overflow-hidden  pb-24 pt-44 sm:pt-48 lg:min-h-[900px] lg:pb-32 lg:pt-[300px]">
+    <section className="relative flex min-h-[680px] items-center overflow-hidden  pb-24 pt-44 sm:pt-48 lg:min-h-[900px] lg:pb-32 lg:pt-[360px]">
       {/* Background photo */}
       <Image
         src="/images/bannerImg2.png"
@@ -46,8 +46,8 @@ export default function Banner() {
         <circle cx="124" cy="17" r="1.5" fill="currentColor" stroke="none" />
       </svg>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1760px] px-4 md:px-8 lg:px-12">
-        <div className="max-w-[680px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1760px] px-6 md:px-10 lg:px-12">
+        <div className="max-w-[680px] lg:mt-0 md:mt-20 mt-20">
           {/* Eyebrow */}
           <div className="flex items-center gap-2 text-[#FF8500]">
             <svg
@@ -58,50 +58,50 @@ export default function Banner() {
               strokeWidth="1.6"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="h-3 w-[66px] shrink-0"
+              className="h-3 lg:w-[66px] md:w-[56px] w-[42px] shrink-0"
             >
               <path d="M1 6h56" />
               <path d="M52 1.5 57.5 6 52 10.5" />
               <circle cx="1" cy="6" r="1.2" fill="currentColor" stroke="none" />
             </svg>
-            <span className="font-kaushan text-[#FF8500] text-[22px] leading-none sm:text-[26px]">
+            <span className="font-kaushan text-[#FF8500] leading-none lg:text-[26px] md:text-lg text-sm">
               Together, we can make a difference
             </span>
           </div>
 
           {/* Heading */}
-          <h1 className="mt-4 text-[42px] font-bold leading-[1.25] tracking-[-0.01em] text-white sm:text-[56px] lg:text-[74px]">
+          <h1 className="lg:mt-4 md:mt-3 mt-2 font-bold leading-tight tracking-[-0.01em] text-white text-[36px] md:text-[56px] lg:text-[74px]">
             Together We Can <br className="hidden sm:block" />
             Make <span className="text-[#F5A704]">Life Better</span>
           </h1>
 
-          <p className="mt-8 max-w-[550px] text-[15.5px] leading-[1.65] text-[#fff9ea] sm:text-[17px]">
-            Every act of kindness has the power to change a life. Join hands with your community, take part in meaningful events, and help build a better tomorrow for everyone. Together, we can make every little effort count.
+          <p className="lg:mt-8 md:mt-6 mt-5 lg:max-w-137.5 md:max-w-105 max-w-75 leading-[1.65] text-[#fff9ea] lg:text-[17px] md:text-[13px] text-xs">
+            Every act of kindness has the power to change a life. Join hands with your community, take part in meaningful events, and help build a better tomorrow for everyone.
           </p>
 
           {/* CTAs */}
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="lg:mt-9 mt-6 flex flex-col md:flex-row items-start md:items-center md:gap-4 gap-3.5">
             <a
               href="#"
               className="group inline-flex items-center gap-2 rounded-full bg-[#F5A704]
-                         px-7 py-3.5 text-[15px] font-semibold text-white border-b border-b-[black]              
-                         transition-all duration-200 ease-out hover:-translate-y-[2px]
+                         lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px] text-[11px] font-semibold text-white border-b border-b-[black]              
+                         transition-all duration-200 ease-out hover:-translate-y-0.5
                          hover:shadow-[0_3px_0_#fff] active:translate-y-0 active:shadow-[0_1px_0_#fff]"
             >
               Explore Upcomming Events
               <ArrowUpRight
-                className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="lg:size-4 md:size-3.5 size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 aria-hidden
               />
             </a>
             <a
               href="#"
-              className="inline-flex items-center gap-2.5 rounded-full bg-[#fff1ce] px-7 py-3.5 text-[15px] font-semibold text-[#171717]
+              className="inline-flex items-center gap-2.5 rounded-full bg-[#fff1ce] lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px] text-[11px] font-semibold text-[#171717]
               border-b border-b-[black]              
-                         transition-all duration-200 ease-out hover:-translate-y-[2px]
+                         transition-all duration-200 ease-out hover:-translate-y-0.5
                          hover:shadow-[0_3px_0_#fff] active:translate-y-0 active:shadow-[0_1px_0_#fff]"
             >
-              <CalendarPlus className="size-4" aria-hidden />
+              <CalendarPlus className="lg:size-4 md:size-3.5 size-2.75" aria-hidden />
               Create an Event
             </a>
           </div>
