@@ -72,7 +72,7 @@ export default function Navbar() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="text-white/90 transition-colors duration-300 hover:text-[#197b11]"
+                    className="text-white/90 transition-colors duration-300 hover:text-[#656565]"
                   >
                     {social.icon}
                   </a>
