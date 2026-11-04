@@ -22,7 +22,9 @@ export default function Banner() {
           viewBox="0 0 130 60"
           fill="none"
           stroke="currentColor"
-          className="pointer-events-none absolute bottom-45 left-[35%] hidden h-24 w-52 text-brand-orange/55 lg:block"
+          className="pointer-events-none absolute
+                     bottom-45 lg:left-[35%] md:left-[53%] left-[52%] md:h-24 h-15 md:w-52 w-32.5
+                    text-brand-orange/55 floating-heart "
         >
           <path
             d="M28 46c-9-7-15-13-15-21a9.5 9.5 0 0 1 15-7.6A9.5 9.5 0 0 1 43 25c0 8-6 14-15 21z"

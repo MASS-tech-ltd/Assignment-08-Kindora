@@ -136,3 +136,33 @@
     @apply font-poppins;
   }
 }
+
+/* Floating hand animation on platform feature section */
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.floating-hand {
+  animation: floating 4s ease-in-out infinite;
+}
+
+/* Floating heart animation on banner section */
+@keyframes floating-heart {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(30px);
+  }
+}
+
+.floating-heart {
+  animation: floating-heart 5s ease-in-out infinite;
+}

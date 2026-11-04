@@ -33,8 +33,16 @@ const features = [
 
 const PlatformFeatures = () => {
     return (
-        <section className="bg-white pt-12 md:pt-18 lg:pt-24">
+        <section className="bg-white pt-18 md:pt-18 lg:pt-24">
             <div className="mx-auto max-w-7xl px-5 sm:px-8">
+                <div>
+                    <img
+                        src="/images/serv-anim.png"
+                        alt="logo-watermark"
+                        aria-hidden="true"
+                        className="absolute lg:top-235 md:top-172 top-172 left-1 lg:size-70 md:size-40 size-27 floating-hand"
+                    />
+                </div>
 
                 {/* Section Heading */}
                 <div className="mb-8 text-center lg:mb-16 md:mb-12">
@@ -43,7 +51,7 @@ const PlatformFeatures = () => {
                         <span className="md:h-[2px] h-[1px] md:w-12 w-10 bg-[#F07800] relative after:absolute after:-right-1 after:-top-[2.25px] md:after:-top-[3px] after:size-1.5 md:after:size-2 after:rotate-45 after:bg-[#F07800]"></span>
 
                         <span className="font-kaushan text-lg text-[#F07800] md:text-xl lg:text-2xl">
-                            How We Make a Difference
+                            Platform Features
                         </span>
 
                         <span className="md:h-[2px] h-[1px] md:w-12 w-10 bg-[#F07800] relative before:absolute before:-left-1 before:-top-[2.25px] md:before:-top-[3px] before:size-1.5 md:before:size-2 before:rotate-45 before:bg-[#F07800]"></span>
