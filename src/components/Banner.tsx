@@ -77,7 +77,8 @@ export default function Banner() {
               <a
                 href="#"
                 className="group inline-flex items-center gap-2 rounded-full bg-[#F5A704]
-                         lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px] text-[11px] font-semibold text-white border-b border-b-[black]              
+                         lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px]
+                         text-[11px] font-semibold text-white border-b border-b-[black]              
                          transition-all duration-200 ease-out hover:-translate-y-0.5
                          hover:shadow-[0_3px_0_#fff] active:translate-y-0 active:shadow-[0_1px_0_#fff]"
               >

@@ -40,7 +40,7 @@ const PlatformFeatures = () => {
                         src="/images/serv-anim.png"
                         alt="logo-watermark"
                         aria-hidden="true"
-                        className="absolute lg:top-235 md:top-172 top-172 left-1 lg:size-70 md:size-40 size-27 floating-hand"
+                        className="absolute lg:top-235 md:top-172 top-172 left-1 lg:size-70 md:size-40 size-32 floating-hand"
                     />
                 </div>
 
@@ -50,14 +50,14 @@ const PlatformFeatures = () => {
                     <div className="md:mb-5 mb-3 flex items-center justify-center md:gap-5 gap-4">
                         <span className="md:h-[2px] h-[1px] md:w-12 w-10 bg-[#F07800] relative after:absolute after:-right-1 after:-top-[2.25px] md:after:-top-[3px] after:size-1.5 md:after:size-2 after:rotate-45 after:bg-[#F07800]"></span>
 
-                        <span className="font-kaushan text-lg text-[#F07800] md:text-xl lg:text-2xl">
+                        <span className="font-kaushan text-lg text-[#FF8500] md:text-xl lg:text-2xl">
                             Platform Features
                         </span>
 
                         <span className="md:h-[2px] h-[1px] md:w-12 w-10 bg-[#F07800] relative before:absolute before:-left-1 before:-top-[2.25px] md:before:-top-[3px] before:size-1.5 md:before:size-2 before:rotate-45 before:bg-[#F07800]"></span>
                     </div>
 
-                    <h2 className="mx-auto max-w-2xl text-[28px] font-bold leading-tight text-[#15171D] sm:text-4xl md:text-4xl lg:text-5xl">
+                    <h2 className="mx-auto max-w-2xl text-[28px] font-bold leading-tight text-[#2f2f2f] md:text-4xl lg:text-[44px]">
                         What Makes Kindora Special?
                     </h2>
 

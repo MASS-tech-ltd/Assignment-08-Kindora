@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
 import PlatformFeatures from "@/components/PlatformFeatures";
+import VisualStories from "@/components/VisualStories";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Navbar />
       <Banner />
       <PlatformFeatures></PlatformFeatures>
+      <VisualStories></VisualStories>
     </main>
   );
 }
