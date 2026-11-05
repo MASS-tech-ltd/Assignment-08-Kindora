@@ -48,7 +48,7 @@ const stories = [
 
 const VisualStories = () => {
     return (
-        <section className="visual-stories-section mt-44 md:mt-45 py-14 md:py-16 lg:py-24 lg:mt-60">
+        <section className="visual-stories-section mt-44 md:mt-45 py-18 md:py-26 lg:py-32 lg:mt-60">
             <div className="mx-auto max-w-7xl px-5 md:px-8">
                 <div>
                     <img
@@ -103,10 +103,10 @@ const VisualStories = () => {
                         <article
                             key={story.id}
                             className="group flex flex-col overflow-hidden rounded-[30px]
-           border border-[#e8e0e0] bg-white
-           transition-all duration-300 ease-in-out
-           hover:-translate-y-[3px]
-           hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)]"
+                                        border border-[#e8e0e0] bg-white
+                                        transition-all duration-300 ease-in-out
+                                        hover:-translate-y-[3px]
+                                        hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)]"
                         >
 
                             {/* Image */}
@@ -124,7 +124,7 @@ const VisualStories = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                                 {/* Slogan */}
-                                <p className="absolute bottom-5 left-5 z-10 max-w-[90%] font-kaushan text-sm leading-relaxed text-white drop-shadow-md md:text-sm">
+                                <p className="absolute bottom-5 left-5 z-10 max-w-[90%] font-kaushan text-[15px] leading-relaxed text-[#fffaef] drop-shadow-md md:text-sm">
                                     {story.slogan}
                                 </p>
 
@@ -155,7 +155,7 @@ const VisualStories = () => {
                                 </div>
 
                                 {/* Event Title */}
-                                <h3 className="mb-2 font-poppins text-lg font-bold leading-snug text-[#424242] transition-colors duration-300 group-hover:text-green-950">
+                                <h3 className="mb-2 font-poppins text-lg font-bold leading-snug text-[#4b4b4b] transition-colors duration-300 group-hover:text-[#181717]">
                                     {story.title}
                                 </h3>
 

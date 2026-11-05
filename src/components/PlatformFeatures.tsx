@@ -89,7 +89,7 @@ const PlatformFeatures = () => {
 
                                     {/* Card Content */}
                                     <div className="relative z-10">
-                                        <h3 className="mb-3 text-xl font-bold text-[#15171D]">
+                                        <h3 className="mb-3 text-xl font-bold text-[#4b4b4b]">
                                             {feature.title}
                                         </h3>
 
@@ -114,7 +114,7 @@ const PlatformFeatures = () => {
                                     aria-label={`Explore ${feature.title}`}
                                     className="absolute -bottom-[109px] left-1/2 z-30 flex size-12 -translate-x-1/2 items-center
                                                 justify-center rounded-full bg-[#FF8500] text-white transition-all
-                                                duration-300 hover:rotate-45 hover:bg-[#087D4B]"
+                                                duration-300 group-hover:rotate-45 group-hover:bg-[#087D4B]"
                                 >
                                     <FaArrowRight className="-rotate-45 text-lg" />
                                 </button>
