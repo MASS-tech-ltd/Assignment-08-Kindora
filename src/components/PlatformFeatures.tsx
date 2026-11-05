@@ -113,7 +113,7 @@ const PlatformFeatures = () => {
                                 <button
                                     aria-label={`Explore ${feature.title}`}
                                     className="absolute -bottom-[109px] left-1/2 z-30 flex size-12 -translate-x-1/2 items-center
-                                                justify-center rounded-full bg-[#FF8500] text-white transition-all
+                                                justify-center rounded-full bg-[#F5A704] text-white transition-all
                                                 duration-300 group-hover:rotate-45 group-hover:bg-[#087D4B]"
                                 >
                                     <FaArrowRight className="-rotate-45 text-lg" />

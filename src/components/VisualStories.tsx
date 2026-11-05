@@ -48,7 +48,7 @@ const stories = [
 
 const VisualStories = () => {
     return (
-        <section className="visual-stories-section mt-44 md:mt-45 py-18 md:py-26 lg:py-32 lg:mt-60">
+        <section className="visual-stories-section mt-0 md:mt-0 py-14 md:py-20 lg:py-24 lg:mt-14">
             <div className="mx-auto max-w-7xl px-5 md:px-8">
                 <div>
                     <img
