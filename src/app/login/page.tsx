@@ -4,7 +4,7 @@ import { ArrowLeft, Mail, LockKeyhole } from "lucide-react";
 
 const LoginPage = () => {
     return (
-        <div className="login-section min-h-screen bg-[#fffbf8] px-4 py-12 flex flex-col items-center justify-center">
+        <div className="login-section min-h-screen px-4 py-12 flex flex-col items-center justify-center">
 
             {/* Heading */}
             <div className="text-center mb-6">
