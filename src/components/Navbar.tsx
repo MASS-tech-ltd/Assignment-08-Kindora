@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { ChevronDown, LogIn } from "lucide-react";
 
 const navLinks = [
-  { label: "Upcoming Events", href: "#"},
+  { label: "Upcoming Events", href: "#" },
 ];
 
 const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
@@ -113,17 +113,15 @@ export default function Navbar() {
 
           {/* Login button */}
           <div className="flex items-center self-center pl-2 sm:pl-3">
-            <a
-              href="#"
+            <Link href="/login"
               className="flex items-center md:gap-2 gap-1.5 lg:mr-6 md:mr-3.5 rounded-full bg-[#F5A704] md:px-3.75 px-2.5 lg:px-6 md:py-1.5 py-0.75 lg:py-2.5
               lg:text-sm md:text-xs text-[10px] font-semibold text-[#4b4646] border border-[#999999]
               transition-all duration-200 ease-out hover:-translate-y-[2px]
               hover:shadow-[0_3px_0_#000] active:translate-y-0 active:shadow-[0_1px_0_#000]
-              "
-            >
+              ">
               <LogIn className="lg:size-4 md:size-3.5 size-2.75" aria-hidden />
               Login
-            </a>
+            </Link>
           </div>
         </nav>
       </div>

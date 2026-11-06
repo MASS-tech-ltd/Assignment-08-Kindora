@@ -20,14 +20,14 @@ const features = [
         id: 2,
         title: "Clean Water and Sanitation",
         description:
-            "Empowering individuals through job training, financial literacy, and small business support to create sustainable livelihoods.",
+            "Providing access to safe drinking water, proper sanitation, and hygiene education to build healthier communities.",
         icon: PackageOpen,
     },
     {
         id: 3,
         title: "Housing and Shelter Initiatives",
         description:
-            "Empowering individuals through job training, financial literacy, and small business support to create sustainable livelihoods.",
+            "Creating safe and affordable housing solutions while supporting families in need of secure and sustainable shelter.",
         icon: House,
     },
 ];
@@ -35,7 +35,7 @@ const features = [
 const WhatWeDo = () => {
     return (
         <section className="bg-white px-5 py-16 sm:px-8 md:px-10 mt-32 md:mt-42 lg:mt-60">
-            <div className="mx-auto grid max-w-[1310px] grid-cols-1 items-center gap-12 lg:grid-cols-[630px_1fr] lg:gap-9">
+            <div className="mx-auto grid max-w-[1310px] grid-cols-1 items-center gap-0 lg:grid-cols-[630px_1fr] lg:gap-9">
 
                 {/* Heading */}
                 <div className="lg:col-start-1 lg:row-start-1">
@@ -57,18 +57,20 @@ const WhatWeDo = () => {
                 </div>
 
                 {/* Image Section */}
-                <div className="relative mx-auto h-[470px] w-full max-w-[620px] sm:h-[550px] md:h-[600px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-[684px]">
+                <div className="mt-6 md:mt-9 lg:mt-0 relative mx-auto h-[470px] w-full max-w-[620px] sm:h-[550px] md:h-[600px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-[684px]">
 
                     {/* Donate Now Button */}
                     <a
                         href="/donate"
                         className="absolute top-[9%] lg:left-20 md:left-14 left-4 z-20 flex h-[175px] w-[48px]
                                    flex-col items-center justify-center gap-2 rounded-xl 
-                                   bg-[#F5A704] text-white shadow-sm transition-all 
-                                   duration-300 hover:bg-[#e85e00] sm:h-[190px] 
-                                   sm:w-[55px] lg:top-[9%] lg:h-[212px] lg:w-[55px]"
+                                   bg-[#F5A704] text-white shadow-sm sm:h-[190px] 
+                                   sm:w-[55px] lg:top-[9%] lg:h-[212px] lg:w-[55px]
+                                   border border-[#999999] transition-all duration-200 ease-out
+                                    hover:-translate-y-0.5 hover:shadow-[0_4px_0_#444444]
+                                    active:translate-y-0 active:shadow-none w-fit"
                     >
-                        <span className="rotate-180 text-[15px] font-bold [writing-mode:vertical-rl]">
+                        <span className="rotate-180 text-base font-bold [writing-mode:vertical-rl]">
                             Donate Now
                         </span>
 
@@ -76,9 +78,9 @@ const WhatWeDo = () => {
                     </a>
 
                     {/* Main Image */}
-                    <div className="absolute top-0 right-0 h-[82%] w-[76%] overflow-hidden rounded-[28px] sm:rounded-[32px] lg:h-full lg:w-[455px]">
+                    <div className="absolute top-0 right-0 h-[82%] w-[76%] overflow-hidden rounded-[28px] sm:rounded-[32px] h-full lg:w-[455px]">
                         <Image
-                            src="/images/what-we-do-image-1.jpg"
+                            src="/images/what-we-do-image-bd-1.png"
                             alt="Children receiving support from a community initiative"
                             fill
                             priority
@@ -88,12 +90,12 @@ const WhatWeDo = () => {
                     </div>
 
                     {/* Small Circular Image */}
-                    <div className="absolute bottom-[14%] left-[0%] z-10 size-[175px]
+                    <div className="absolute md:bottom-[10%] bottom-[10%] left-[0%] z-10 size-[175px]
                                     overflow-hidden rounded-full border-[6px] 
                                     border-white sm:size-[215px] md:size-[235px] 
-                                    lg:bottom-[11%] md:left-[-30px] lg:left-[-30px] lg:size-[266px]">
+                                    lg:bottom-[11%] md:left-[-30px] lg:size-[266px]">
                         <Image
-                            src="/images/what-we-do-image-2.jpg"
+                            src="/images/rounded-image.jfif"
                             alt="A happy child holding a heart"
                             fill
                             sizes="(max-width: 768px) 235px, 266px"
@@ -103,7 +105,7 @@ const WhatWeDo = () => {
                 </div>
 
                 {/* Features */}
-                <div className="lg:col-start-1 lg:row-start-2">
+                <div className="mt-3 md:mt-6 lg:col-start-1 lg:row-start-2">
                     {features.map((feature, index) => {
                         const Icon = feature.icon;
 
@@ -117,7 +119,7 @@ const WhatWeDo = () => {
                             >
                                 {/* Feature Icon */}
                                 <div className="relative flex size-[76px] shrink-0 items-center justify-center">
-                                    <span className="absolute bottom-[4px] left-1/2 size-[42px] -translate-x-1/2 rounded-full bg-[#F5A704]" />
+                                    <span className="absolute bottom-[6px] left-1/2 size-[42px] -translate-x-1/2 rounded-full bg-[#F5A704]" />
 
                                     <Icon
                                         size={54}

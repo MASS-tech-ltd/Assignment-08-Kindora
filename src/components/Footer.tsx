@@ -104,7 +104,7 @@ const Footer = () => {
                         </Link>
 
                         <div className="lg:block md:block flex justify-center">
-                            <p className="mt-6 max-w-[290px] font-inter text-sm leading-[26px] text-white/65">
+                            <p className="mt-2 max-w-[290px] font-inter text-sm leading-[22px] text-white/65">
                                 Every act of kindness has the power to change a life.
                                 Join hands with Kindora and help build a better,
                                 happier, and stronger community.
@@ -124,7 +124,7 @@ const Footer = () => {
                                     </p>
                                     <a
                                         href="tel:+8801XXXXXXXXX"
-                                        className="mt-1 block font-poppins text-base font-semibold text-white transition-colors hover:text-[#F5A704]"
+                                        className="block font-inter text-base font-semibold text-white transition-colors hover:text-[#F5A704]"
                                     >
                                         +880 9638-267943
                                     </a>
@@ -145,7 +145,7 @@ const Footer = () => {
                                     </p>
                                     <a
                                         href="mailto:hello@kindora.org"
-                                        className="mt-1 block break-all font-poppins text-sm font-semibold text-white transition-colors hover:text-[#F5A704] sm:text-base"
+                                        className="block break-all font-inter text-sm font-semibold text-white transition-colors hover:text-[#F5A704] sm:text-base"
                                     >
                                         hellobd@kindora.org
                                     </a>
@@ -236,7 +236,7 @@ const Footer = () => {
             </div>
 
             {/* Copyright Bottom Bar */}
-            <div className="bg-[#087D68]">
+            <div className="bg-[#036956]">
                 <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-5 text-center sm:px-8 md:flex-row md:text-left">
 
                     <p className="font-inter text-xs text-white sm:text-sm">

@@ -22,7 +22,7 @@ const stories = [
         description:
             "We planted trees to build a greener and healthier Bangladesh for future generations.",
         image: "/images/Tree-pantation.png",
-        date: "Jul 12, 2024",
+        date: "Jul 12, 2025",
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ const stories = [
         description:
             "We organized a free health camp to provide basic medical support to underprivileged people.",
         image: "/images/Free-medical-camp.png",
-        date: "Mar 20, 2024",
+        date: "Mar 20, 2026",
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const stories = [
         description:
             "We brought joy to underprivileged children through fun activities, drawing and gifts.",
         image: "/images/joy-for-kids.png",
-        date: "Jan 26, 2024",
+        date: "Jan 26, 2026",
     },
 ];
 
