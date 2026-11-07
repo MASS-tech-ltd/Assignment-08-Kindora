@@ -9,7 +9,7 @@ import {
 
 const Register = () => {
     return (
-        <div className="login-section min-h-screen px-4 py-12 flex flex-col items-center justify-center">
+        <div className="login-section min-h- px-4 pt-28 pb-20  lg:pt-40 lg:pb-24 md:pt-28 md:pb-20 flex flex-col items-center justify-center">
 
             {/* Heading */}
             <div className="text-center mb-6">
@@ -31,14 +31,14 @@ const Register = () => {
                     <div>
                         <label
                             htmlFor="name"
-                            className="block text-sm font-inter font-medium text-[#1D271F] mb-2"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
                         >
                             Name
                         </label>
 
                         <div className="relative">
                             <UserRound
-                                size={17}
+                                size={15}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                             />
 
@@ -49,7 +49,7 @@ const Register = () => {
                                 placeholder="Enter your name"
                                 autoComplete="name"
                                 required
-                                className="w-full h-11 pl-10 pr-3 text-[13px] rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
@@ -58,14 +58,14 @@ const Register = () => {
                     <div>
                         <label
                             htmlFor="email"
-                            className="block text-sm font-inter font-medium text-[#1D271F] mb-2"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
                         >
                             Email Address
                         </label>
 
                         <div className="relative">
                             <Mail
-                                size={17}
+                                size={15}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                             />
 
@@ -76,7 +76,7 @@ const Register = () => {
                                 placeholder="you@example.com"
                                 autoComplete="email"
                                 required
-                                className="w-full h-11 pl-10 pr-3 text-[13px] rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
@@ -85,14 +85,14 @@ const Register = () => {
                     <div>
                         <label
                             htmlFor="photoURL"
-                            className="block text-sm font-inter font-medium text-[#1D271F] mb-2"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
                         >
                             Photo URL
                         </label>
 
                         <div className="relative">
                             <Image
-                                size={17}
+                                size={15}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                             />
 
@@ -103,7 +103,7 @@ const Register = () => {
                                 placeholder="Enter your photo URL"
                                 autoComplete="url"
                                 required
-                                className="w-full h-11 pl-10 pr-3 text-[13px] rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
@@ -112,14 +112,14 @@ const Register = () => {
                     <div>
                         <label
                             htmlFor="password"
-                            className="block text-sm font-inter font-medium text-[#1D271F] mb-2"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
                         >
                             Password
                         </label>
 
                         <div className="relative">
                             <LockKeyhole
-                                size={17}
+                                size={15}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                             />
 
@@ -130,7 +130,34 @@ const Register = () => {
                                 placeholder="Enter your password"
                                 autoComplete="new-password"
                                 required
-                                className="w-full h-11 pl-10 pr-3 text-[13px] rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div>
+                        <label
+                            htmlFor="confirmPassword"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
+                        >
+                            Confirm Password
+                        </label>
+
+                        <div className="relative">
+                            <LockKeyhole
+                                size={15}
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                            />
+
+                            <input
+                                id="confirmPassword"
+                                type="password"
+                                name="confirmPassword"
+                                placeholder="Confirm your password"
+                                autoComplete="new-password"
+                                required
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>

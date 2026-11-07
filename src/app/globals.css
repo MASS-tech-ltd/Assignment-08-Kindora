@@ -152,6 +152,24 @@
   animation: floating 4s ease-in-out infinite;
 }
 
+
+/* Floating BIG heart animation on platform feature section */
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+.floating-big-heart {
+  animation: floating 4s ease-in-out infinite;
+}
+
+
+
 /* Floating heart animation on banner section */
 @keyframes floating-heart {
   0%, 100% {
@@ -188,6 +206,7 @@
   background-size: 7.5px 7.5px, 10px 10px;
 }
 
+/* #fafaf9 */
 /* Login Section */
 .login-section {
   background-color: #fafaf9;

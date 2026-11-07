@@ -1,6 +1,10 @@
+
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { ChevronDown, LogIn } from "lucide-react";
 
 const navLinks = [
@@ -31,7 +35,7 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
     href: "#",
     icon: (
       <svg viewBox="0 0 24 24" className="lg:size-[18px] md:size-[15px] size-[12px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0" />
         <path d="m10 15 5-3-5-3z" />
       </svg>
     ),
@@ -50,11 +54,21 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   return (
-    <header className="absolute inset-x-0 top-0 z-50 lg:pt-4 md:pt-6 pt-5">
+    <header
+      className={`absolute inset-x-0 top-0 z-50 lg:pt-4 md:pt-6 pt-5 ${isHomePage ? "" : "lg:pt-6 md:pt-5 pt-0"
+        }`}
+    >
       <div className="mx-auto w-full max-w-[1760px] px-4 md:px-8 lg:px-12">
+
         {/* Top announcement bar */}
-        <div className="flex justify-end lg:mr-45 md:mr-16 mr-12">
+        <div
+          className={`flex justify-end lg:mr-45 md:mr-16 mr-12 ${isHomePage ? "" : "hidden"
+            }`}
+        >
           <div className="flex max-w-full items-center border-t border-t-[#2b2b2b] rounded-t-[26px]
                           bg-[#dd7200] lg:px-5 md:px-4 lg:py-0.5 md:py-0 py-0 lg:text-[12px] md:text-[10px] text-[9px] font-normal
                           text-white shadow-[0_12px_30px_rgba(0,0,0,0.18)]
@@ -83,7 +97,13 @@ export default function Navbar() {
         </div>
 
         {/* Main navbar */}
-        <nav aria-label="Main" className="flex items-stretch rounded-3xl bg-[#FFF4D9] lg:px-2 md:px-1 px-2.25 py-2 md:py-2.5 lg:py-3 shadow-[0_18px_50px_rgba(0,0,0,0.18)] lg:rounded-full">
+        <nav
+          aria-label="Main"
+          className={`flex items-stretch rounded-3xl md:pl-4 lg:pl-0 lg:px-0 md:px-1 px-2.25 py-2 md:py-2.5 lg:py-3 transition-all duration-300 ${isHomePage
+              ? "bg-[#FFF4D9] shadow-[0_18px_50px_rgba(0,0,0,0.18)] lg:rounded-full"
+              : "bg-[#fffcf5] border md:pl-4 lg:pl-0 px-3 md:px-0 mt-1 md:mt-1 py-3 md:py-3 lg:py-0 rounded-4xl md:rounded-4xl lg:rounded-full border-[#ffcb93] shadow-[0_12px_35px_rgba(0,0,0,0.06)] "
+            }`}
+        >
           <Link href="/" className="flex items-center self-center rounded-full lg:pl-4">
             <Image
               src="/images/kindora-logo.png"
@@ -95,7 +115,8 @@ export default function Navbar() {
           </Link>
 
           {/* Yellow divider after the logo */}
-          <span className="lg:w-0.75 md:w-0.5 w-0.5 self-stretch rounded-full bg-[#F5A704] mx-2 md:mx-2 lg:mx-7" />
+          <span className={`lg:w-0.75 md:w-0.5 w-0.5 self-stretch rounded-full mx-2 md:mx-2 lg:mx-7 ${isHomePage ? "bg-[#F5A704]" : "bg-[#ffd4a5]"
+            }`} />
 
           <ul className="flex flex-1 flex-wrap items-center justify-center
                         lg:justify-start lg:pl-6 lg:py-0">
@@ -113,12 +134,16 @@ export default function Navbar() {
 
           {/* Login button */}
           <div className="flex items-center self-center pl-2 sm:pl-3">
-            <Link href="/login"
-              className="flex items-center md:gap-2 gap-1.5 lg:mr-6 md:mr-3.5 rounded-full bg-[#F5A704] md:px-3.75 px-2.5 lg:px-6 md:py-1.5 py-0.75 lg:py-2.5
-              lg:text-sm md:text-xs text-[10px] font-semibold text-[#4b4646] border border-[#999999]
-              transition-all duration-200 ease-out hover:-translate-y-[2px]
+            <Link
+              href="/login"
+              className={`flex items-center md:gap-2 gap-1.5 lg:mr-6 md:mr-3.5 rounded-full md:px-3.75 px-2.5 lg:px-6 md:py-1.5 py-0.75 lg:py-2.5
+              lg:text-sm md:text-xs text-[10px] font-semibold text-[#4b4646] border transition-all duration-200 ease-out hover:-translate-y-[2px]
               hover:shadow-[0_3px_0_#000] active:translate-y-0 active:shadow-[0_1px_0_#000]
-              ">
+              ${isHomePage
+                  ? "bg-[#F5A704] border-[#999999]"
+                  : "bg-[#ffedc1] border-[#ffc588]"
+                }`}
+            >
               <LogIn className="lg:size-4 md:size-3.5 size-2.75" aria-hidden />
               Login
             </Link>

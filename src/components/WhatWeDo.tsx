@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import {
     HandHeart,
@@ -55,7 +54,17 @@ const WhatWeDo = () => {
                         Building hope creating lasting change
                     </h2>
                 </div>
-
+                {/* Floting Image */}
+                <div>
+                    <Image
+                        src="/images/pricing-sh.png"
+                        alt="pricing-sh"
+                        width={180}
+                        height={0}
+                        className="floating-big-heart absolute lg:w-40 md:w-30 min-[425px]:w-25 min-[375px]:w-20 lg:top-630 md:top-760 min-[425px]:top-933 min-[375px]:top-955
+                                   lg:left-10 md:left-150 min-[375px]:left-68 min-[425px]:left-75"
+                    />
+                </div>
                 {/* Image Section */}
                 <div className="mt-6 md:mt-9 lg:mt-0 relative mx-auto h-[470px] w-full max-w-[620px] sm:h-[550px] md:h-[600px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-[684px]">
 
@@ -85,7 +94,7 @@ const WhatWeDo = () => {
                             fill
                             priority
                             sizes="(max-width: 768px) 76vw, 455px"
-                            className="object-cover object-center"
+                            className=" object-cover object-center"
                         />
                     </div>
 
@@ -113,8 +122,8 @@ const WhatWeDo = () => {
                             <div
                                 key={feature.id}
                                 className={`flex gap-5 py-7 sm:gap-7 ${index !== features.length - 1
-                                        ? "border-b border-[#E9E9E9]"
-                                        : ""
+                                    ? "border-b border-[#E9E9E9]"
+                                    : ""
                                     }`}
                             >
                                 {/* Feature Icon */}

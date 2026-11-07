@@ -50,14 +50,14 @@ const VisualStories = () => {
     return (
         <section className="visual-stories-section mt-0 md:mt-0 py-14 md:py-20 lg:py-24 lg:mt-14">
             <div className="mx-auto max-w-7xl px-5 md:px-8">
-                <div>
+                {/* <div>
                     <img
                         src="/images/heart-palms.png"
                         alt="logo-watermark"
                         aria-hidden="true"
-                        className="absolute lg:top-440 md:top-455 top-650 lg:left-170 md:left-90 min-[375px]:left-55 min-[425px]:left-68 lg:size-65 md:size-45 size-40 opacity-2 floating-hand"
+                        className="absolute lg:top-645 md:top-800 min-[425px]:top-965 min-[375px]:top-984 lg:left-170 md:left-90 min-[375px]:left-55 min-[425px]:left-68 lg:size-65 md:size-45 size-40 opacity-2 floating-hand"
                     />
-                </div>
+                </div> */}
 
                 {/* Section Heading */}
                 <div className=" mb-8 flex flex-col justify-between gap-3.5 md:mb-14 md:flex-row md:items-end">

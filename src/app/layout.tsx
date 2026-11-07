@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import { Poppins, Inter, Kaushan_Script } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -36,7 +38,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${poppins.variable} ${inter.variable} ${kaushanScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-poppins">
-        {children}
+
+        <Navbar />
+
+        <main className="flex-1">
+          {children}
+        </main>
+
+        <Footer />
+
       </body>
     </html>
   );

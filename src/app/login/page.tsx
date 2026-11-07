@@ -4,7 +4,7 @@ import { ArrowLeft, Mail, LockKeyhole } from "lucide-react";
 
 const LoginPage = () => {
     return (
-        <div className="login-section min-h-screen px-4 py-12 flex flex-col items-center justify-center">
+        <div className="login-section min-h- lg:pt-44 lg:pb-28 pt-26 pb-18 md:pt-30 md:pb-20 px-4 flex flex-col items-center justify-center">
 
             {/* Heading */}
             <div className="text-center mb-6">
@@ -26,14 +26,14 @@ const LoginPage = () => {
                     <div>
                         <label
                             htmlFor="email"
-                            className="block text-sm font-inter font-medium text-[#1D271F] mb-2"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
                         >
                             Email Address
                         </label>
 
                         <div className="relative">
                             <Mail
-                                size={17}
+                                size={15}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                             />
 
@@ -44,7 +44,7 @@ const LoginPage = () => {
                                 placeholder="you@example.com"
                                 autoComplete="email"
                                 required
-                                className="w-full h-11 pl-10 pr-3 text-[13px] rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
@@ -53,14 +53,14 @@ const LoginPage = () => {
                     <div>
                         <label
                             htmlFor="password"
-                            className="block text-sm font-inter font-medium text-[#1D271F] mb-2"
+                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
                         >
                             Password
                         </label>
 
                         <div className="relative">
                             <LockKeyhole
-                                size={17}
+                                size={15}
                                 className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                             />
 
@@ -71,7 +71,7 @@ const LoginPage = () => {
                                 placeholder="Enter your password"
                                 autoComplete="current-password"
                                 required
-                                className="w-full h-11 pl-10 pr-3 text-[13px] rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
