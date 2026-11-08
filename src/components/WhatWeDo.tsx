@@ -122,7 +122,7 @@ const WhatWeDo = () => {
                             <div
                                 key={feature.id}
                                 className={`flex gap-5 py-7 sm:gap-7 ${index !== features.length - 1
-                                    ? "border-b border-[#E9E9E9]"
+                                    ? "border-b border-[#dcd7d7]"
                                     : ""
                                     }`}
                             >

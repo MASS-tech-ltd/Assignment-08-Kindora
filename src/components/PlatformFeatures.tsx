@@ -74,10 +74,9 @@ const PlatformFeatures = () => {
                                 className="group relative mx-auto w-full max-w-[340px]"
                             >
                                 {/* Outer Circular Border */}
-                                <div className="absolute -bottom-[88px] left-1/2 h-[180px] w-[180px] -translate-x-1/2 rounded-full border border-[#D9E0E3] transition-all duration-500 group-hover:border-[#FF8500]"></div>
-
+                                <div className="absolute -bottom-[88px] left-1/2 h-[180px] w-[180px] -translate-x-1/2 rounded-full border border-[#cdcdcd] transition-all duration-500 group-hover:border-[#FF8500]"></div>
                                 {/* Main Card */}
-                                <div className="relative z-10 flex h-[255px] flex-col items-center rounded-[30px] border border-[#D9E0E3] bg-white px-5 pt-7 text-center transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-[#FF8500]/10">
+                                <div className="relative z-10 flex h-[255px] flex-col items-center rounded-[30px] border border-[#d3d3d3] bg-white px-5 pt-7 text-center transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-[#FF8500]/10">
 
                                     {/* Background Watermark Icon */}
                                     <img
@@ -99,7 +98,7 @@ const PlatformFeatures = () => {
                                     </div>
 
                                     {/* Circular Image */}
-                                    <div className="absolute -bottom-[42px] left-1/2 z-20 size-[100px] -translate-x-1/2 rounded-full border-[4px] border-[#D9E0E3] bg-white p-[3px] transition-all duration-300 group-hover:border-[#FF8500]">
+                                    <div className="absolute -bottom-[42px] left-1/2 z-20 size-[100px] -translate-x-1/2 rounded-full border-[4px] border-[#d4d4d4] bg-white p-[3px] transition-all duration-300 group-hover:border-[#FF8500]">
                                         <img
                                             src={feature.image}
                                             alt={feature.title}

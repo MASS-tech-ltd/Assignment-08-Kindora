@@ -1,24 +1,34 @@
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Mail, LockKeyhole } from "lucide-react";
 
 const LoginPage = () => {
     return (
-        <div className="login-section min-h- lg:pt-44 lg:pb-28 pt-26 pb-18 md:pt-30 md:pb-20 px-4 flex flex-col items-center justify-center">
+        <div className="login-section min-h- lg:pt-44 lg:pb-28 pt-28 pb-18 md:pt-34 md:pb-20 px-4 flex flex-col items-center justify-center">
 
             {/* Heading */}
             <div className="text-center mb-6">
-                <h1 className="text-[28px] font-inter tracking-tight font-bold text-[#4c4c4c]">
-                    Login
+                <div className="flex justify-center">
+                    <Image
+                        src="/images/Logo-watermark.png"
+                        alt="Kindora"
+                        width={1994}
+                        height={438}
+                        className="w-auto h-9 md:h-9 lg:h-10"
+                    />
+                </div>
+                <h1 className="text-[28px] font-inter tracking-tight font-extrabold text-[#383838]">
+                    Welcome back!
                 </h1>
 
-                <p className="text-[13px] font-inter text-gray-500 mt-1.5">
-                    Welcome back! Sign in to continue making a difference.
+                <p className="text-[13px] font-inter text-gray-500 mt-1">
+                    Sign in to continue making a difference.
                 </p>
             </div>
 
             {/* Login Card */}
-            <div className="w-full max-w-[400px] bg-white border border-[#ffd4a5] rounded-2xl p-5 sm:p-6 shadow-sm">
+            <div className="w-full max-w-[400px] bg-white border border-[#ffd4a5] rounded-2xl p-5 sm:p-6 shadow-md">
 
                 <form className="space-y-5">
 
@@ -26,7 +36,7 @@ const LoginPage = () => {
                     <div>
                         <label
                             htmlFor="email"
-                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
+                            className="block text-sm font-inter font-semibold text-[#454545] mb-2"
                         >
                             Email Address
                         </label>
@@ -44,7 +54,7 @@ const LoginPage = () => {
                                 placeholder="you@example.com"
                                 autoComplete="email"
                                 required
-                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#dfdfdf] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
@@ -53,7 +63,7 @@ const LoginPage = () => {
                     <div>
                         <label
                             htmlFor="password"
-                            className="block text-sm font-inter font-medium text-[#515151] mb-2"
+                            className="block text-sm font-inter font-semibold text-[#454545]] mb-2"
                         >
                             Password
                         </label>
@@ -71,7 +81,7 @@ const LoginPage = () => {
                                 placeholder="Enter your password"
                                 autoComplete="current-password"
                                 required
-                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#E5E7EB] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
+                                className="w-full h-11 pl-9 pr-3 text-xs rounded-lg border border-[#dfdfdf] outline-none transition-all focus:border-[#F07800] focus:ring-2 focus:ring-[#F07800]/10 placeholder:text-gray-400"
                             />
                         </div>
                     </div>
@@ -88,19 +98,19 @@ const LoginPage = () => {
 
                 {/* Divider */}
                 <div className="flex items-center gap-3 my-5">
-                    <div className="flex-1 h-px bg-[#E5E7EB]"></div>
+                    <div className="flex-1 h-px bg-[#dfdfdf]"></div>
 
                     <span className="text-xs text-gray-500">
                         OR
                     </span>
 
-                    <div className="flex-1 h-px bg-[#E5E7EB]"></div>
+                    <div className="flex-1 h-px bg-[#dfdfdf]"></div>
                 </div>
 
                 {/* Google Login */}
                 <button
                     type="button"
-                    className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#E5E7EB] bg-white hover:bg-[#FFF9F2] text-[13px]  font-semibold font-inter text-[#616161] transition-all duration-200"
+                    className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#dfdfdf] bg-white hover:bg-[#eeeeed] text-[13px]  font-semibold font-inter text-[#616161] transition-all duration-200"
                 >
                     <svg
                         width="18"

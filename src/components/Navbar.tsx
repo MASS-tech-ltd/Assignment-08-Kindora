@@ -6,6 +6,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, LogIn } from "lucide-react";
+import { IoMoonOutline } from "react-icons/io5";
+import { HiOutlineMoon } from "react-icons/hi";
+import { BiMoon } from "react-icons/bi";
 
 const navLinks = [
   { label: "Upcoming Events", href: "#" },
@@ -99,9 +102,9 @@ export default function Navbar() {
         {/* Main navbar */}
         <nav
           aria-label="Main"
-          className={`flex items-stretch rounded-3xl md:pl-4 lg:pl-0 lg:px-0 md:px-1 px-2.25 py-2 md:py-2.5 lg:py-3 transition-all duration-300 ${isHomePage
-              ? "bg-[#FFF4D9] shadow-[0_18px_50px_rgba(0,0,0,0.18)] lg:rounded-full"
-              : "bg-[#fffcf5] border md:pl-4 lg:pl-0 px-3 md:px-0 mt-1 md:mt-1 py-3 md:py-3 lg:py-0 rounded-4xl md:rounded-4xl lg:rounded-full border-[#ffcb93] shadow-[0_12px_35px_rgba(0,0,0,0.06)] "
+          className={`flex items-center  rounded-3xl md:pl-4 lg:pl-0 lg:px-0 md:px-1 px-2.25 py-2 md:py-2.5 lg:py-3 transition-all duration-300 ${isHomePage
+            ? "bg-[#FFF4D9] shadow-[0_18px_50px_rgba(0,0,0,0.18)] lg:rounded-full"
+            : "bg-[#fef9eb] border md:pl-4 lg:pl-0 px-3 md:px-0 mt-1 md:mt-1 py-3 md:py-3 lg:py-0 rounded-4xl md:rounded-4xl lg:rounded-full border-[#ffcb93] shadow-md"
             }`}
         >
           <Link href="/" className="flex items-center self-center rounded-full lg:pl-4">
@@ -133,18 +136,32 @@ export default function Navbar() {
           </ul>
 
           {/* Login button */}
+          <button
+            className="md:text-lg text-xs flex justify-center items-center
+              bg-[#8c8b8a]/10 
+               text-[#8c8b8a] md:w-8 md:h-8 w-4.5 h-4.5
+               rounded-full transition-all duration-200
+               hover:bg-[#8c8b8a]/15
+               active:scale-90 cursor-pointer"
+          >
+            <BiMoon />
+          </button>
           <div className="flex items-center self-center pl-2 sm:pl-3">
             <Link
               href="/login"
-              className={`flex items-center md:gap-2 gap-1.5 lg:mr-6 md:mr-3.5 rounded-full md:px-3.75 px-2.5 lg:px-6 md:py-1.5 py-0.75 lg:py-2.5
-              lg:text-sm md:text-xs text-[10px] font-semibold text-[#4b4646] border transition-all duration-200 ease-out hover:-translate-y-[2px]
-              hover:shadow-[0_3px_0_#000] active:translate-y-0 active:shadow-[0_1px_0_#000]
+              className={`flex items-center
+              md:gap-2 gap-1 lg:mr-6 md:mr-3.5 rounded-full
+              md:px-2.25 px-1.5 lg:px-3
+              md:py-1.5 py-0.75 lg:py-1.75
+              lg:text-sm md:text-xs text-[9px]
+              font-semibold text-[#4b4646] border transition-all duration-200 ease-out hover:-translate-y-[2px]
+              hover:shadow-[0_2.5px_0_#000] active:translate-y-0 active:shadow-[0_1px_0_#000]
               ${isHomePage
                   ? "bg-[#F5A704] border-[#999999]"
-                  : "bg-[#ffedc1] border-[#ffc588]"
+                  : "bg-[#ffe6a8] border-[#ffc588]"
                 }`}
             >
-              <LogIn className="lg:size-4 md:size-3.5 size-2.75" aria-hidden />
+              <LogIn className="lg:size-4 md:size-3.5 size-2.25" aria-hidden />
               Login
             </Link>
           </div>
