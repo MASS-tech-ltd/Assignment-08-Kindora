@@ -1,4 +1,5 @@
-
+"use client";
+import type { FormEvent } from "react";
 import Link from "next/link";
 import {
     ArrowLeft,
@@ -11,6 +12,28 @@ import {
 } from "lucide-react";
 
 const CreateEvent = () => {
+
+    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+
+        const eventData = Object.fromEntries(formData.entries());
+
+        console.log("Event Data:", eventData);
+
+        const res = await fetch(`http://localhost:5000/create-event`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(eventData)
+        })
+        
+        const data = await res.json();
+        console.log(data);
+    };
+
     return (
         <section className="login-section min-h-screen px-4 lg:pt-38 md:pt-34 pt-28 lg:pb-20 md:pb-18 pb-16">
 
@@ -47,7 +70,7 @@ const CreateEvent = () => {
                     </div>
 
                     {/* Event Form */}
-                    <form className="space-y-5">
+                    <form onSubmit={handleFormSubmit} className="space-y-5">
 
                         {/* Event Title */}
                         <div>
@@ -161,7 +184,7 @@ const CreateEvent = () => {
                                     id="location"
                                     name="location"
                                     type="text"
-                                    placeholder="e.g. Mohammadpur Town Hall, Dhaka"
+                                    placeholder="e.g. Kuril Chowrasta, Dhaka"
                                     required
                                     className="w-full h-10 rounded-lg border border-[#dadada] bg-[#F8FAFB] pl-9 pr-3 font-inter text-xs text-[#424B52] outline-none transition-all placeholder:text-[#A0A7AD] focus:border-[#FF8500] focus:ring-2 focus:ring-[#FF8500]/10"
                                 />
@@ -239,7 +262,7 @@ const CreateEvent = () => {
                             </span>
 
                             <span className="font-inter text-[10px] font-semibold text-[#424B52] break-all">
-                                
+
                             </span>
 
                         </div>
