@@ -11,7 +11,7 @@ import { HiOutlineMoon } from "react-icons/hi";
 import { BiMoon } from "react-icons/bi";
 
 const navLinks = [
-  { label: "Upcoming Events", href: "#" },
+  { label: "Upcoming Events", href: "/events" },
 ];
 
 const socialLinks: { label: string; href: string; icon: ReactNode }[] = [

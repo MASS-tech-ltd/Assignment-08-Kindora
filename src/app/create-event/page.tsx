@@ -35,7 +35,7 @@ const CreateEvent = () => {
     };
 
     return (
-        <section className="login-section min-h-screen px-4 lg:pt-38 md:pt-34 pt-28 lg:pb-20 md:pb-18 pb-16">
+        <section className="login-section min-h-screen px-4 lg:pt-36 md:pt-30 pt-26 lg:pb-20 md:pb-18 pb-16">
 
             <div className="mx-auto w-full lg:max-w-[680px] md:max-w-[580px] max-w-[480px]">
 
