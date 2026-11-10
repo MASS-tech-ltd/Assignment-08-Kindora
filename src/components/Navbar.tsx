@@ -1,7 +1,10 @@
 
 "use client";
-
-import Image from "next/image";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
@@ -9,6 +12,8 @@ import { ChevronDown, LogIn } from "lucide-react";
 import { IoMoonOutline } from "react-icons/io5";
 import { HiOutlineMoon } from "react-icons/hi";
 import { BiMoon } from "react-icons/bi";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Upcoming Events", href: "/events" },
@@ -57,8 +62,13 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
 ];
 
 export default function Navbar() {
+
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+
+  const { data: session } = authClient.useSession()
+  const user = session?.user;
+
 
   return (
     <header
@@ -135,7 +145,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Login button */}
+          {/* Theme changing icon */}
           <button
             className="md:text-lg text-xs flex justify-center items-center
               bg-[#8c8b8a]/10 
@@ -146,6 +156,22 @@ export default function Navbar() {
           >
             <BiMoon />
           </button>
+
+          {/* User avater */}
+
+          <Avatar className="w-10 h-10 border-2 border-gray-200 shadow-sm">
+            <AvatarImage
+              referrerPolicy="no-referrer"
+              src={user?.image as string}
+              alt="User"
+              className="object-cover"
+            />
+            <AvatarFallback className="bg-[#DDF8E6] text-[#087D4B]">
+              {user?.name?.charAt(0) || "U"}
+            </AvatarFallback>
+          </Avatar>
+
+          {/* Login button */}
           <div className="flex items-center self-center pl-2 sm:pl-3">
             <Link
               href="/login"

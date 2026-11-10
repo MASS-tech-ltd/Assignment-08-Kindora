@@ -1,11 +1,61 @@
 
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Mail, LockKeyhole } from "lucide-react";
+import { Bounce, toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import type { FormEvent } from "react";
 
 const LoginPage = () => {
+
+    const router = useRouter();
+
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const user = Object.fromEntries(formData.entries()) as {
+            email: string,
+            password: string,
+        }
+
+        const { data, error } = await authClient.signIn.email({
+            ...user,
+        });
+
+        if (error) {
+            toast.error(error.message || "Login failed!", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                transition: Bounce,
+            });
+
+            return;
+        }
+
+        if (data) {
+            toast.success("Login successful!", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+
+            router.push("/");
+        }
+    };
+
     return (
-        <div className="login-section min-h- lg:pt-44 lg:pb-28 pt-28 pb-18 md:pt-34 md:pb-20 px-4 flex flex-col items-center justify-center">
+        <div className="login-section lg:pt-44 lg:pb-28 pt-28 pb-18 md:pt-34 md:pb-20 px-4 flex flex-col items-center justify-center">
 
             {/* Heading */}
             <div className="text-center mb-6">
@@ -30,7 +80,8 @@ const LoginPage = () => {
             {/* Login Card */}
             <div className="w-full max-w-[400px] bg-white border border-[#ffd4a5] rounded-2xl p-5 sm:p-6 shadow-md">
 
-                <form className="space-y-5">
+                <form onSubmit={handleLogin}
+                      className="space-y-5">
 
                     {/* Email */}
                     <div>
@@ -63,7 +114,7 @@ const LoginPage = () => {
                     <div>
                         <label
                             htmlFor="password"
-                            className="block text-sm font-inter font-semibold text-[#454545]] mb-2"
+                            className="block text-sm font-inter font-semibold text-[#454545] mb-2"
                         >
                             Password
                         </label>
@@ -110,7 +161,7 @@ const LoginPage = () => {
                 {/* Google Login */}
                 <button
                     type="button"
-                    className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#dfdfdf] bg-white hover:bg-[#eeeeed] text-[13px]  font-semibold font-inter text-[#616161] transition-all duration-200"
+                    className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#dfdfdf] bg-white hover:bg-[#eeeeed] text-[13px] font-semibold font-inter text-[#616161] transition-all duration-200"
                 >
                     <svg
                         width="18"

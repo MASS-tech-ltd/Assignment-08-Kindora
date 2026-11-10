@@ -4,6 +4,8 @@ import { Poppins, Inter, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -43,8 +45,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <main className="flex-1">
           {children}
+          <ToastContainer position="top-right" autoClose={3000} />
         </main>
-
         <Footer />
 
       </body>

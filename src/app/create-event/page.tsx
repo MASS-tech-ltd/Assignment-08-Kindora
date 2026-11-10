@@ -1,4 +1,6 @@
+
 "use client";
+
 import type { FormEvent } from "react";
 import Link from "next/link";
 import {
@@ -11,7 +13,27 @@ import {
     Image as ImageIcon,
 } from "lucide-react";
 
+// Get tomorrow's date according to Bangladesh timezone
+const getTomorrowDate = () => {
+    const dateParts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Dhaka",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    }).formatToParts(new Date());
+
+    const year = Number(dateParts.find((part) => part.type === "year")?.value);
+    const month = Number(dateParts.find((part) => part.type === "month")?.value);
+    const day = Number(dateParts.find((part) => part.type === "day")?.value);
+
+    const tomorrow = new Date(Date.UTC(year, month - 1, day + 1));
+
+    return tomorrow.toISOString().split("T")[0];
+};
+
 const CreateEvent = () => {
+
+    const minEventDate = getTomorrowDate();
 
     const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -22,14 +44,14 @@ const CreateEvent = () => {
 
         console.log("Event Data:", eventData);
 
-        const res = await fetch(`http://localhost:5000/create-event`, {
+        const res = await fetch("http://localhost:5000/create-event", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(eventData)
-        })
-        
+        });
+
         const data = await res.json();
         console.log(data);
     };
@@ -153,13 +175,17 @@ const CreateEvent = () => {
                                         id="eventDate"
                                         name="eventDate"
                                         type="date"
+                                        min={minEventDate}
                                         required
-                                        className="w-full h-10 rounded-lg border border-[#dadada] bg-[#F8FAFB] pl-9 pr-2 font-inter text-xs text-[#424B52] outline-none transition-all focus:border-[#FF8500] focus:ring-2 focus:ring-[#FF8500]/10"
+                                        className="w-full h-10 rounded-lg border
+                                                 border-[#dadada] bg-[#F8FAFB] pl-9 pr-2 font-inter
+                                                 text-xs text-[#424B52] outline-none transition-all
+                                                 focus:border-[#FF8500] focus:ring-2 focus:ring-[#FF8500]/10"
                                     />
                                 </div>
 
                                 <p className="font-inter text-[10.5px] text-[#92999F] mt-1.5">
-                                    Dates must be in the future (today or later)
+                                    Please select a date starting from tomorrow.
                                 </p>
                             </div>
 
@@ -218,6 +244,7 @@ const CreateEvent = () => {
 
                             {/* Quick Photo Presets */}
                             <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 mt-2 font-inter text-[10.5px]">
+
                                 <span className="text-[#92999F]">
                                     Quick photo presets:
                                 </span>
@@ -232,11 +259,13 @@ const CreateEvent = () => {
                                 <span className="text-[#ababab]">•</span>
 
                                 <span className="text-[#F07800]">Tree Plantation</span>
+
                             </div>
                         </div>
 
                         {/* Event Description */}
                         <div>
+
                             <label
                                 htmlFor="description"
                                 className="block font-inter text-[13px] font-semibold text-[#424B52] mb-1.5"
@@ -252,6 +281,7 @@ const CreateEvent = () => {
                                 placeholder="Explain the purpose of the drive, volunteers required, items being distributed or tasks to complete..."
                                 className="w-full min-h-[105px] resize-y rounded-lg border border-[#dadada] bg-[#F8FAFB] px-3 py-3 font-inter text-xs leading-relaxed text-[#424B52] outline-none transition-all placeholder:text-[#A0A7AD] focus:border-[#FF8500] focus:ring-2 focus:ring-[#FF8500]/10"
                             />
+
                         </div>
 
                         {/* Organizer Email */}
