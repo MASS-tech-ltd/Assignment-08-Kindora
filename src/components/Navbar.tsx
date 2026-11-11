@@ -1,6 +1,27 @@
 
 "use client";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuGroup,
+} from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  CalendarPlus,
+  Settings,
+  CalendarCheck,
+  LogOut,
+} from "lucide-react";
+import {
   Avatar,
   AvatarFallback,
   AvatarImage,
@@ -14,6 +35,7 @@ import { HiOutlineMoon } from "react-icons/hi";
 import { BiMoon } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import { Bounce, toast } from "react-toastify";
 
 const navLinks = [
   { label: "Upcoming Events", href: "/events" },
@@ -68,6 +90,29 @@ export default function Navbar() {
 
   const { data: session } = authClient.useSession()
   const user = session?.user;
+
+  const handleLogOut = async () => {
+    const { error } = await authClient.signOut();
+
+    if (error) {
+      console.log(error);
+      toast.error(error.message || "Logout failed!");
+      return;
+    }
+
+    toast.success("Logged out successfully!", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
+  };
 
 
   return (
@@ -147,50 +192,172 @@ export default function Navbar() {
 
           {/* Theme changing icon */}
           <button
-            className="md:text-lg text-xs flex justify-center items-center
-              bg-[#8c8b8a]/10 
-               text-[#8c8b8a] md:w-8 md:h-8 w-4.5 h-4.5
-               rounded-full transition-all duration-200
-               hover:bg-[#8c8b8a]/15
-               active:scale-90 cursor-pointer"
+            className={`md:text-lg text-xs flex justify-center items-center
+                      bg-[#8c8b8a]/10 
+                      text-[#8c8b8a] md:w-8 md:h-8 w-4.5 h-4.5
+                        rounded-full transition-all duration-200
+                      hover:bg-[#8c8b8a]/15
+                        active:scale-90 cursor-pointer
+                        ${user ? "md:mr-3.5 mr-2.5" : ""}`}
           >
             <BiMoon />
           </button>
 
-          {/* User avater */}
+          {/* User section */}
+          {
+            user ?
+              <>{/* User avater start */}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger
+                      render={
+                        <div className="inline-flex items-center">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger
+                              render={
+                                <button
+                                  type="button"
+                                  className="flex items-center gap-1 sm:gap-1.5 outline-none"
+                                />
+                              }
+                            >
+                              <Avatar className="w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 border-2 border-[#FF8500] shadow-sm">
+                                <AvatarImage
+                                  referrerPolicy="no-referrer"
+                                  src={user?.image as string}
+                                  alt="User"
+                                  className="object-cover"
+                                />
+                                <AvatarFallback className="bg-[#DDF8E6] text-[#FF8500]">
+                                  {user?.name?.charAt(0) || "U"}
+                                </AvatarFallback>
+                              </Avatar>
 
-          <Avatar className="w-10 h-10 border-2 border-gray-200 shadow-sm">
-            <AvatarImage
-              referrerPolicy="no-referrer"
-              src={user?.image as string}
-              alt="User"
-              className="object-cover"
-            />
-            <AvatarFallback className="bg-[#DDF8E6] text-[#087D4B]">
-              {user?.name?.charAt(0) || "U"}
-            </AvatarFallback>
-          </Avatar>
+                              <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-500" />
+                            </DropdownMenuTrigger>
 
-          {/* Login button */}
-          <div className="flex items-center self-center pl-2 sm:pl-3">
-            <Link
-              href="/login"
-              className={`flex items-center
+                            <DropdownMenuContent
+                              align="end"
+                              sideOffset={8}
+                              className="w-42 md:w-52 bg-[#efefef] lg:w-56 max-w-[calc(100vw-2rem)] rounded-xl md:p-1.5 p-1 shadow-lg"
+                            >
+                              {/* User Information */}
+                              <DropdownMenuGroup>
+                                <DropdownMenuLabel className="md:px-3 px-2.5 md:py-2 py-1.5">
+                                  <p className="md:text-sm text-[13px] font-semibold text-gray-700 truncate">
+                                    {user?.name}
+                                  </p>
+
+                                  <p className="md:text-xs text-[10px] font-normal text-gray-500 truncate">
+                                    {user?.email}
+                                  </p>
+                                </DropdownMenuLabel>
+                              </DropdownMenuGroup>
+
+                              <DropdownMenuSeparator />
+
+                              {/* Create Event */}
+                              <DropdownMenuItem
+                                render={<Link href="/create-event" />}
+                                className="cursor-pointer gap-2 md:py-2 py-1.5 text-xs sm:text-sm"
+                              >
+                                <CalendarPlus className="w-4 h-4 shrink-0 text-[#ee7b00]" />
+                                <span>Create Event</span>
+                              </DropdownMenuItem>
+
+                              {/* Manage Events */}
+                              <DropdownMenuItem
+                                render={<Link href="/manage-events" />}
+                                className="cursor-pointer gap-2 md:py-2 py-1.5 text-xs sm:text-sm"
+                              >
+                                <Settings className="w-4 h-4 shrink-0 text-[#8B5CF6]" />
+                                <span>Manage Events</span>
+                              </DropdownMenuItem>
+
+                              {/* Joined Events */}
+                              <DropdownMenuItem
+                                render={<Link href="/joined-events" />}
+                                className="cursor-pointer gap-2 md:py-2 py-1.5 text-xs sm:text-sm"
+                              >
+                                <CalendarCheck className="w-4 h-4 shrink-0 text-[#ee7b00]" />
+                                <span>Joined Events</span>
+                              </DropdownMenuItem>
+
+                              <DropdownMenuSeparator />
+
+                              {/* Logout */}
+                              <DropdownMenuItem
+                                onClick={handleLogOut}
+                                className="cursor-pointer font-medium gap-2 md:py-2 py-1.5
+                                text-xs md:text-sm text-[#df0000] focus:text-red-600"
+                              >
+                                <LogOut className="md:w-4 w-2 md:h-4 h-2 shrink-0" />
+                                <span>Logout</span>
+                              </DropdownMenuItem>
+
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                      }
+                    >
+                      <span className="sr-only">User profile</span>
+                    </TooltipTrigger>
+
+                    <TooltipContent
+                      side="bottom"
+                      className="bg-[#1D271F] text-white border-none rounded-lg px-3 py-2 text-xs font-medium"
+                    >
+                      {user?.name || "User"}
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                {/* User avater end */}
+
+                {/* Logout button */}
+                <div className="hidden md:block self-center pl-2 sm:pl-3">
+                  <a
+                    onClick={handleLogOut}
+                    className={`flex items-center
+              md:gap-1.25 gap-1 lg:mr-6 md:mr-3.5 rounded-full
+              md:px-2.25 px-1.5 lg:px-3
+              md:py-1.5 py-0.75 lg:py-1.75
+              lg:text-[13px] md:text-xs text-[9px]
+              font-medium text-red-500 border transition-all duration-200 ease-out hover:-translate-y-[2px]
+              hover:shadow-[0_2.5px_0_#e20000] active:translate-y-0 active:shadow-[0_1px_0_#000]
+              ${isHomePage
+                        ? " border-[#ff4e4e]"
+                        : " border-[#ff4e4e]"
+                      }`}
+                  >
+                    <LogOut className="lg:size-3.5 md:size-3 size-2.25" aria-hidden />
+                    Logout
+                  </a>
+                </div>
+
+              </> : <>
+
+                {/* Login button */}
+                <div className="flex items-center self-center pl-2 sm:pl-3">
+                  <Link
+                    href="/login"
+                    className={`flex items-center
               md:gap-2 gap-1 lg:mr-6 md:mr-3.5 rounded-full
               md:px-2.25 px-1.5 lg:px-3
               md:py-1.5 py-0.75 lg:py-1.75
-              lg:text-sm md:text-xs text-[9px]
+              lg:text-[13px] md:text-xs text-[9px]
               font-semibold text-[#4b4646] border transition-all duration-200 ease-out hover:-translate-y-[2px]
               hover:shadow-[0_2.5px_0_#000] active:translate-y-0 active:shadow-[0_1px_0_#000]
               ${isHomePage
-                  ? "bg-[#F5A704] border-[#999999]"
-                  : "bg-[#ffe6a8] border-[#ffc588]"
-                }`}
-            >
-              <LogIn className="lg:size-4 md:size-3.5 size-2.25" aria-hidden />
-              Login
-            </Link>
-          </div>
+                        ? "bg-[#F5A704] border-[#999999]"
+                        : "bg-[#ffe6a8] border-[#ffc588]"
+                      }`}
+                  >
+                    <LogIn className="lg:size-4 md:size-3.5 size-2.25" aria-hidden />
+                    Login
+                  </Link>
+                </div></>
+          }
+
         </nav>
       </div>
     </header>

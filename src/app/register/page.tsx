@@ -47,10 +47,10 @@ const Register = () => {
             email: string,
             image: string,
             password: string,
-            confirmPassword: string            
+            confirmPassword: string
         }
 
-        
+
 
         // Password validation
         if (!hasUppercase || !hasLowercase || !hasMinLength) {
@@ -72,7 +72,7 @@ const Register = () => {
 
 
         if (data) {
-            console.log(data)
+            await authClient.signOut();
             toast.success('Account created successfully!', {
                 position: "top-right",
                 autoClose: 2000,

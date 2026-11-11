@@ -54,6 +54,35 @@ const LoginPage = () => {
         }
     };
 
+    // Google logIn::
+
+    const handleGoogleLogin = async () => {
+        const { data, error } = await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
+
+        if (error) {
+            console.log(error);
+            toast.error(error.message || "Google login failed!");
+            return;
+        }
+
+        if (data) {
+            toast.success("Google login processing", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
+    };
+
     return (
         <div className="login-section lg:pt-44 lg:pb-28 pt-28 pb-18 md:pt-34 md:pb-20 px-4 flex flex-col items-center justify-center">
 
@@ -81,7 +110,7 @@ const LoginPage = () => {
             <div className="w-full max-w-[400px] bg-white border border-[#ffd4a5] rounded-2xl p-5 sm:p-6 shadow-md">
 
                 <form onSubmit={handleLogin}
-                      className="space-y-5">
+                    className="space-y-5">
 
                     {/* Email */}
                     <div>
@@ -160,6 +189,7 @@ const LoginPage = () => {
 
                 {/* Google Login */}
                 <button
+                    onClick={handleGoogleLogin}
                     type="button"
                     className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#dfdfdf] bg-white hover:bg-[#eeeeed] text-[13px] font-semibold font-inter text-[#616161] transition-all duration-200"
                 >
