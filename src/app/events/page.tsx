@@ -83,7 +83,7 @@ const UpcomingEvents = async () => {
                         {/* Badge */}
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ff982a]/10 px-2.5 py-1 text-[10px] font-semibold text-[#eb7c06] mb-2">
                             <CalendarDays size={11.5} />
-                            <span>Future Community Drives</span>
+                            <span>Together For A Better Tomorrow</span>
                         </div>
 
                         {/* Title */}
@@ -248,7 +248,7 @@ const UpcomingEvents = async () => {
                                     />
 
                                     <span>
-                                        {data.organizerName || "Community Volunteers"}
+                                        Organized By : {data.name || "Community Volunteers"}
                                     </span>
 
                                 </div>

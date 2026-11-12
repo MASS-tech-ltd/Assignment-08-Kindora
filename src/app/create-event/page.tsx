@@ -12,6 +12,7 @@ import {
     MapPin,
     Image as ImageIcon,
 } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 // Get tomorrow's date according to Bangladesh timezone
 const getTomorrowDate = () => {
@@ -35,6 +36,9 @@ const CreateEvent = () => {
 
     const minEventDate = getTomorrowDate();
 
+    const { data: session } = authClient.useSession()
+    const user = session?.user;
+
     const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -42,14 +46,21 @@ const CreateEvent = () => {
 
         const eventData = Object.fromEntries(formData.entries());
 
-        console.log("Event Data:", eventData);
+        // console.log("Event Data:", eventData);
+        
+        const eventAndUserData = {
+            ...user,
+            ...eventData,
+            joinDate: new Date(),
+        }
+        console.log("Event Data:", eventAndUserData);
 
         const res = await fetch("http://localhost:5000/create-event", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(eventData)
+            body: JSON.stringify(eventAndUserData)
         });
 
         const data = await res.json();
@@ -78,7 +89,7 @@ const CreateEvent = () => {
 
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-[#f7efe8] px-2.5 py-1 text-[10px] font-semibold text-[#eb7c06] mb-2">
                             <Sparkles size={11} />
-                            Social Service Drive
+                            Community Impact Initiative
                         </div>
 
                         <h1 className="font-poppins text-[21px] sm:text-[23px] leading-tight font-extrabold tracking-tight text-[#404142]">
@@ -292,7 +303,7 @@ const CreateEvent = () => {
                             </span>
 
                             <span className="font-inter text-[10px] font-semibold text-[#424B52] break-all">
-
+                                {user?.email}
                             </span>
 
                         </div>

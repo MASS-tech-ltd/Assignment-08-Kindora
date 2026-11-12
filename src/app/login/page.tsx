@@ -3,83 +3,105 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Mail, LockKeyhole } from "lucide-react";
+import { ArrowLeft, Mail, LockKeyhole, LoaderCircle } from "lucide-react";
 import { Bounce, toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import type { FormEvent } from "react";
 
 const LoginPage = () => {
 
     const router = useRouter();
 
+    const [isLoginLoading, setIsLoginLoading] = useState(false);
+    const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-        const user = Object.fromEntries(formData.entries()) as {
-            email: string,
-            password: string,
-        }
+        setIsLoginLoading(true);
 
-        const { data, error } = await authClient.signIn.email({
-            ...user,
-        });
+        try {
+            const formData = new FormData(e.currentTarget);
+            const user = Object.fromEntries(formData.entries()) as {
+                email: string,
+                password: string,
+            }
 
-        if (error) {
-            toast.error(error.message || "Login failed!", {
-                position: "top-right",
-                autoClose: 2000,
-                theme: "colored",
-                transition: Bounce,
+            const { data, error } = await authClient.signIn.email({
+                ...user,
             });
 
-            return;
-        }
+            if (error) {
+                toast.error(error.message || "Login failed!", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    theme: "colored",
+                    transition: Bounce,
+                });
 
-        if (data) {
-            toast.success("Login successful!", {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            });
+                return;
+            }
 
-            router.push("/");
+            if (data) {
+                toast.success("Login successful!", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+
+                router.push("/");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong. Please try again!");
+        } finally {
+            setIsLoginLoading(false);
         }
     };
 
     // Google logIn::
 
     const handleGoogleLogin = async () => {
-        const { data, error } = await authClient.signIn.social({
-            provider: "google",
-            callbackURL: "/",
-        });
 
-        if (error) {
-            console.log(error);
-            toast.error(error.message || "Google login failed!");
-            return;
-        }
+        setIsGoogleLoading(true);
 
-        if (data) {
-            toast.success("Google login processing", {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
+        try {
+            const { data, error } = await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/",
             });
+
+            if (error) {
+                console.log(error);
+                toast.error(error.message || "Google login failed!");
+                return;
+            }
+
+            if (data) {
+                toast.success("Google login processing", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong. Please try again!");
+            setIsGoogleLoading(false);
         }
     };
 
@@ -169,9 +191,13 @@ const LoginPage = () => {
                     {/* Login Button */}
                     <button
                         type="submit"
-                        className="w-full h-11 rounded-lg bg-[#F07800] hover:bg-[#DB6C00] text-white text-[15px] font-inter font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.99]"
+                        disabled={isLoginLoading || isGoogleLoading}
+                        className="w-full h-11 flex justify-center items-center gap-2 rounded-lg bg-[#F07800] hover:bg-[#DB6C00] text-white text-[15px] font-inter font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                        Login
+                        {isLoginLoading && (
+                            <LoaderCircle size={18} className="animate-spin" />
+                        )}
+                        {isLoginLoading ? "Logging in..." : "Login"}
                     </button>
 
                 </form>
@@ -191,33 +217,38 @@ const LoginPage = () => {
                 <button
                     onClick={handleGoogleLogin}
                     type="button"
-                    className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#dfdfdf] bg-white hover:bg-[#eeeeed] text-[13px] font-semibold font-inter text-[#616161] transition-all duration-200"
+                    disabled={isGoogleLoading || isLoginLoading}
+                    className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#dfdfdf] bg-white hover:bg-[#eeeeed] text-[13px] font-semibold font-inter text-[#616161] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                    <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill="#FFC107"
-                            d="M43.6 20.5H42V20H24v8h11.3A12 12 0 1 1 24 12a11.8 11.8 0 0 1 7.9 3l5.7-5.7A19.9 19.9 0 1 0 44 24c0-1.2-.1-2.4-.4-3.5z"
-                        />
-                        <path
-                            fill="#FF3D00"
-                            d="m6.3 14.7 6.6 4.8A12 12 0 0 1 24 12c3 0 5.7 1.1 7.9 3l5.7-5.7A19.9 19.9 0 0 0 6.3 14.7z"
-                        />
-                        <path
-                            fill="#4CAF50"
-                            d="M24 44a19.8 19.8 0 0 0 13.6-5.3l-6.3-5.3A12 12 0 0 1 12.8 29l-6.5 5A20 20 0 0 0 24 44z"
-                        />
-                        <path
-                            fill="#1976D2"
-                            d="M43.6 20.5H42V20H24v8h11.3a12 12 0 0 1-4.1 5.4l6.3 5.3A19.9 19.9 0 0 0 44 24c0-1.2-.1-2.4-.4-3.5z"
-                        />
-                    </svg>
+                    {isGoogleLoading ? (
+                        <LoaderCircle size={18} className="animate-spin" />
+                    ) : (
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 48 48"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill="#FFC107"
+                                d="M43.6 20.5H42V20H24v8h11.3A12 12 0 1 1 24 12a11.8 11.8 0 0 1 7.9 3l5.7-5.7A19.9 19.9 0 1 0 44 24c0-1.2-.1-2.4-.4-3.5z"
+                            />
+                            <path
+                                fill="#FF3D00"
+                                d="m6.3 14.7 6.6 4.8A12 12 0 0 1 24 12c3 0 5.7 1.1 7.9 3l5.7-5.7A19.9 19.9 0 0 0 6.3 14.7z"
+                            />
+                            <path
+                                fill="#4CAF50"
+                                d="M24 44a19.8 19.8 0 0 0 13.6-5.3l-6.3-5.3A12 12 0 0 1 12.8 29l-6.5 5A20 20 0 0 0 24 44z"
+                            />
+                            <path
+                                fill="#1976D2"
+                                d="M43.6 20.5H42V20H24v8h11.3a12 12 0 0 1-4.1 5.4l6.3 5.3A19.9 19.9 0 0 0 44 24c0-1.2-.1-2.4-.4-3.5z"
+                            />
+                        </svg>
+                    )}
 
-                    Continue with Google
+                    {isGoogleLoading ? "Connecting..." : "Continue with Google"}
                 </button>
 
                 {/* Sign Up */}

@@ -14,6 +14,7 @@ import {
     ShieldCheck,
 } from "lucide-react";
 import { EventDataTypes } from "@/app/types/eventTypes";
+import JoinEventButton from "@/components/JoinEvent/JoinEventButton";
 
 
 const eventTypeStyles: Record<string, { text: string; bg: string }> = {
@@ -65,9 +66,7 @@ const EventDetailsPage = async ({params}: {
 
     const res = await fetch(`http://localhost:5000/events/${eventId}`);
 
-    const data: EventDataTypes = await res.json();
-
-    console.log(data);
+    const eventData: EventDataTypes = await res.json();
 
     return (
         <section className="login-section min-h-screen bg-[#f5f8fa] px-4 lg:pt-36 md:pt-30 pt-26 lg:pb-18 md:pb-13 pb-14">
@@ -87,7 +86,7 @@ const EventDetailsPage = async ({params}: {
                 <div className="relative overflow-hidden rounded-t-[20px] lg:h-[300px] md:h-[260px] h-[245px]">
 
                     <Image
-                        src={data.thumbnail}
+                        src={eventData.thumbnail}
                         alt="Volunteers distributing food"
                         fill
                         priority
@@ -103,32 +102,32 @@ const EventDetailsPage = async ({params}: {
                         className={`absolute lg:left-155 md:left-133 lg:top-64 md:top-53 min-[425px]:left-74 min-[375px]:left-62 top-50
                             z-10 inline-flex items-center gap-1 rounded-full 
                             md:px-2.5 md:py-1 md:text-[11px] px-2 py-1 text-[10px] 
-                            font-semibold shadow-sm ${eventTypeStyles[data.eventType]?.bg || "bg-gray-100"
-                            } ${eventTypeStyles[data.eventType]?.text || "text-gray-600"
+                            font-semibold shadow-sm ${eventTypeStyles[eventData.eventType]?.bg || "bg-gray-100"
+                            } ${eventTypeStyles[eventData.eventType]?.text || "text-gray-600"
                             }`}
                     >
                         <Heart size={11} />
 
-                        <span>{data.eventType}</span>
+                        <span>{eventData.eventType}</span>
                     </div>
 
                     {/* Hero Content */}
                     <div className="absolute bottom-5 left-4 right-4">
 
                         <h1 className="mb-2 font-poppins min-[425px]:text-[22px] min-[375px]:text-[20px] font-bold leading-tight text-white md:text-[30px]">
-                            {data.eventTitle}
+                            {eventData.eventTitle}
                         </h1>
 
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-inter text-[11px] font-medium text-white/90">
 
                             <span className="inline-flex items-center gap-1.5">
                                 <MapPin size={13} className="text-[#FF8500]" />
-                                {data.location}
+                                {eventData.location}
                             </span>
 
                             <span className="inline-flex items-center gap-1.5">
                                 <CalendarDays size={13} className="text-[#FF8500]" />
-                                {data.eventDate}
+                                {eventData.eventDate}
                             </span>
 
                         </div>
@@ -162,25 +161,8 @@ const EventDetailsPage = async ({params}: {
                             </div>
 
                         </div>
-
-                        <div className="ml-auto flex items-center gap-2">
-
-                            {/* Join Event */}
-                            <button
-                                type="button"
-                                className="min-[375px]:mt-3.5 min-[425px]:mt-0 md:mt-0 ml-0 min-[375px]:ml-[175px] min-[425px]:ml-0 
-                                    group inline-flex items-center gap-1.25 rounded-full bg-[#F07800]
-                                    lg:px-4 lg:py-2.25 md:px-4 md:py-2.25 px-2.5 py-1.5 lg:text-[12px] md:text-[12px]
-                                    text-[9.5px] font-semibold text-white border border-[#999999]
-                                    transition-all duration-200 ease-out
-                                    hover:-translate-y-0.5 hover:shadow-[0_2px_0_#444444]
-                                    active:translate-y-0 active:shadow-none w-fit"
-                            >
-                                <Heart size={13} />
-                                Join Event
-                            </button>
-
-                        </div>
+                        {/* Join event button */}
+                        <JoinEventButton key={eventData._id} eventData={eventData}></JoinEventButton>
 
                     </div>
 
@@ -198,7 +180,7 @@ const EventDetailsPage = async ({params}: {
                                 </h2>
 
                                 <p className="font-inter text-[12px] leading-[1.7] text-[#7a858f]">
-                                    {data.description}
+                                    {eventData.description}
                                 </p>
 
                             </div>

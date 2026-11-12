@@ -221,7 +221,7 @@ export default function Navbar() {
                                 />
                               }
                             >
-                              <Avatar className="w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 border-2 border-[#FF8500] shadow-sm">
+                              <Avatar className="cursor-pointer w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 border-2 border-[#FF8500] shadow-sm">
                                 <AvatarImage
                                   referrerPolicy="no-referrer"
                                   src={user?.image as string}
@@ -276,7 +276,7 @@ export default function Navbar() {
 
                               {/* Joined Events */}
                               <DropdownMenuItem
-                                render={<Link href="/joined-events" />}
+                                render={<Link href="/my-joined-events" />}
                                 className="cursor-pointer gap-2 md:py-2 py-1.5 text-xs sm:text-sm"
                               >
                                 <CalendarCheck className="w-4 h-4 shrink-0 text-[#ee7b00]" />
@@ -317,7 +317,7 @@ export default function Navbar() {
                 <div className="hidden md:block self-center pl-2 sm:pl-3">
                   <a
                     onClick={handleLogOut}
-                    className={`flex items-center
+                    className={`cursor-pointer flex items-center
               md:gap-1.25 gap-1 lg:mr-6 md:mr-3.5 rounded-full
               md:px-2.25 px-1.5 lg:px-3
               md:py-1.5 py-0.75 lg:py-1.75
@@ -345,10 +345,10 @@ export default function Navbar() {
               md:px-2.25 px-1.5 lg:px-3
               md:py-1.5 py-0.75 lg:py-1.75
               lg:text-[13px] md:text-xs text-[9px]
-              font-semibold text-[#4b4646] border transition-all duration-200 ease-out hover:-translate-y-[2px]
+              font-semibold text-[#4f4e4e] border transition-all duration-200 ease-out hover:-translate-y-[2px]
               hover:shadow-[0_2.5px_0_#000] active:translate-y-0 active:shadow-[0_1px_0_#000]
               ${isHomePage
-                        ? "bg-[#F5A704] border-[#999999]"
+                        ? "bg-[#ffb820] border-[#999999]"
                         : "bg-[#ffe6a8] border-[#ffc588]"
                       }`}
                   >

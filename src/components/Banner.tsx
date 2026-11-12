@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight, CalendarPlus } from "lucide-react";
 import Statistics from "./Statistics";
+import Link from "next/link";
 
 export default function Banner() {
   return (
@@ -74,8 +75,8 @@ export default function Banner() {
 
             {/* CTAs */}
             <div className="lg:mt-9 mt-6 flex flex-col md:flex-row items-start md:items-center md:gap-4 gap-3.5">
-              <a
-                href="#"
+              <Link
+                href="/events"
                 className="group inline-flex items-center gap-2 rounded-full bg-[#F5A704]
                          lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px]
                          text-[11px] font-semibold text-white border-b border-b-[black]              
@@ -87,9 +88,9 @@ export default function Banner() {
                   className="lg:size-4 md:size-3.5 size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   aria-hidden
                 />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/create-event"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[#fff1ce] lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px] text-[11px] font-semibold text-[#171717]
               border-b border-b-[black]              
                          transition-all duration-200 ease-out hover:-translate-y-0.5
@@ -97,7 +98,7 @@ export default function Banner() {
               >
                 <CalendarPlus className="lg:size-4 md:size-3.5 size-2.75" aria-hidden />
                 Create an Event
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -16,6 +16,7 @@ import {
     Check,
     Eye,
     EyeOff,
+    LoaderCircle,
 } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
@@ -30,6 +31,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
@@ -51,8 +53,8 @@ const Register = () => {
         }
 
 
-
         // Password validation
+
         if (!hasUppercase || !hasLowercase || !hasMinLength) {
             toast.error("Please meet all password requirements!");
             return;
@@ -60,41 +62,59 @@ const Register = () => {
 
 
         // Confirm Password validation
+
         if (user.password !== user.confirmPassword) {
             toast.error("Passwords do not match!");
             return;
         }
 
 
-        const { data, error } = await authClient.signUp.email({
-            ...user,
-        })
+        setIsLoading(true);
+
+        try {
+
+            const { data, error } = await authClient.signUp.email({
+                ...user,
+            })
 
 
-        if (data) {
-            await authClient.signOut();
-            toast.success('Account created successfully!', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            });
-
-            router.push("/login");
-        }
+            if (error) {
+                console.log(error);
+                toast.error(error.message || "Registration failed!");
+                return;
+            }
 
 
-        if (error) {
+            if (data) {
+
+                await authClient.signOut();
+
+                toast.success('Account created successfully!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+
+                router.push("/login");
+
+            }
+
+        } catch (error) {
+
             console.log(error);
-            toast.error(error.message || "Registration failed!");
+            toast.error("Something went wrong. Please try again!");
+
+        } finally {
+
+            setIsLoading(false);
+
         }
-
-
 
     };
 
@@ -131,7 +151,6 @@ const Register = () => {
                 </p>
 
             </div>
-
 
 
             {/* Register Card */}
@@ -177,7 +196,6 @@ const Register = () => {
                     </div>
 
 
-
                     {/* Email */}
 
                     <div>
@@ -213,7 +231,6 @@ const Register = () => {
                     </div>
 
 
-
                     {/* photoURL */}
 
                     <div>
@@ -247,7 +264,6 @@ const Register = () => {
                         </div>
 
                     </div>
-
 
 
                     {/* Password */}
@@ -303,7 +319,6 @@ const Register = () => {
                     </div>
 
 
-
                     {/* Confirm Password */}
 
                     <div>
@@ -353,7 +368,6 @@ const Register = () => {
                         </div>
 
 
-
                         {/* Password Requirements */}
 
                         <div className="mt-2.5 space-y-1 pl-1">
@@ -374,7 +388,6 @@ const Register = () => {
                             </p>
 
 
-
                             {/* Lowercase */}
 
                             <p className={`flex items-center gap-2 text-[11px] font-inter ${hasLowercase ? "text-green-600" : "text-[#7f7f81]"}`}>
@@ -388,7 +401,6 @@ const Register = () => {
                                 At least one lowercase letter (a-z)
 
                             </p>
-
 
 
                             {/* Minimum Length */}
@@ -405,25 +417,30 @@ const Register = () => {
 
                             </p>
 
-
                         </div>
 
                     </div>
-
 
 
                     {/* Register Button */}
 
                     <button
                         type="submit"
-                        className="w-full h-11 rounded-lg bg-[#F07800] hover:bg-[#DB6C00] text-white text-[15px] font-inter font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.99]"
+                        disabled={isLoading}
+                        aria-busy={isLoading}
+                        className="w-full h-11 flex justify-center items-center gap-2 rounded-lg bg-[#F07800] hover:bg-[#DB6C00] text-white text-[15px] font-inter font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                        Register
+
+                        {isLoading && (
+                            <LoaderCircle size={18} className="animate-spin" />
+                        )}
+
+                        {isLoading ? "Registering..." : "Register"}
+
                     </button>
 
 
                 </form>
-
 
 
                 {/* Login */}
@@ -443,7 +460,6 @@ const Register = () => {
 
 
             </div>
-
 
 
             {/* Back to Home */}

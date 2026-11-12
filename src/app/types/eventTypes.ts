@@ -1,12 +1,17 @@
 export interface EventDataTypes {
     _id: string;
+    name: string;
+    email: string;
+    emailVerified: boolean;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+    id: string;
     eventTitle: string;
     eventType: string;
     eventDate: string;
     location: string;
     thumbnail: string;
     description: string;
-    organizerName: string;
-    organizerEmail: string;
-    createdBy: string;
+    joinDate: string;
 }
