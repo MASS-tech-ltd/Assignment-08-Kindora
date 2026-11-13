@@ -43,6 +43,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+
 import { Bounce, toast } from "react-toastify";
 
 
@@ -115,6 +116,12 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
     // Edit modal state
     const [isEditOpen, setIsEditOpen] = useState(false);
 
+    // Delete modal state
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+    // Deleted event state
+    const [isDeleted, setIsDeleted] = useState(false);
+
     // Store updated event data
     const [currentEvent, setCurrentEvent] = useState(eventData);
 
@@ -167,6 +174,7 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
                     theme: "light",
                     transition: Bounce,
                 });
+
                 // Close edit modal
                 setIsEditOpen(false);
 
@@ -181,6 +189,70 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
         }
 
     };
+
+
+    // Handle Delete Event
+    const handleDeleteEvent = async () => {
+
+        try {
+
+            const res = await fetch(`http://localhost:5000/events/${currentEvent._id}`, {
+                method: "DELETE",
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to delete event");
+            }
+
+            const data = await res.json();
+
+            console.log("Delete Response:", data);
+
+            if (data.deletedCount === 1) {
+
+                // Close delete confirmation modal
+                setIsDeleteOpen(false);
+
+                // Remove deleted event card instantly
+                setIsDeleted(true);
+
+                // Show success toast
+                toast.success("Event deleted successfully!", {
+                    position: "top-center",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+
+                console.log("Event deleted successfully!");
+
+            }
+
+        } catch (error) {
+
+            console.error("Delete Error:", error);
+
+            toast.error("Failed to delete event!", {
+                position: "top-center",
+                autoClose: 1500,
+                theme: "light",
+                transition: Bounce,
+            });
+
+        }
+
+    };
+
+
+    // Hide deleted event card
+    if (isDeleted) {
+        return null;
+    }
 
 
     return (
@@ -555,7 +627,10 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
 
 
                     {/* Delete Button & Confirmation */}
-                    <AlertDialog>
+                    <AlertDialog
+                        open={isDeleteOpen}
+                        onOpenChange={setIsDeleteOpen}
+                    >
 
                         <AlertDialogTrigger
                             render={
@@ -593,8 +668,8 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
                                 </AlertDialogCancel>
 
                                 <AlertDialogAction
-                                    className="bg-red-600 text-white hover:bg-red-700"
-                                    disabled
+                                    onClick={handleDeleteEvent}
+                                    className="bg-red-500 text-white hover:bg-red-600 cursor-pointer"
                                 >
                                     Delete Event
                                 </AlertDialogAction>

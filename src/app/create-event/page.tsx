@@ -2,7 +2,9 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
     ArrowLeft,
     Sparkles,
@@ -11,6 +13,7 @@ import {
     CalendarDays,
     MapPin,
     Image as ImageIcon,
+    LoaderCircle,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
@@ -34,6 +37,10 @@ const getTomorrowDate = () => {
 
 const CreateEvent = () => {
 
+    const router = useRouter();
+
+    const [isLoading, setIsLoading] = useState(false);
+
     const minEventDate = getTomorrowDate();
 
     const { data: session } = authClient.useSession()
@@ -42,29 +49,48 @@ const CreateEvent = () => {
     const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const formData = new FormData(event.currentTarget);
+        setIsLoading(true);
 
-        const eventData = Object.fromEntries(formData.entries());
+        try {
+            const formData = new FormData(event.currentTarget);
 
-        // console.log("Event Data:", eventData);
-        
-        const eventAndUserData = {
-            ...user,
-            ...eventData,
-            joinDate: new Date(),
+            const eventData = Object.fromEntries(formData.entries());
+
+            // console.log("Event Data:", eventData);
+
+            const eventAndUserData = {
+                ...user,
+                ...eventData,
+                joinDate: new Date(),
+            }
+
+            console.log("Event Data:", eventAndUserData);
+
+            const res = await fetch("http://localhost:5000/create-event", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(eventAndUserData)
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.message || "Failed to create event");
+            }
+
+            console.log(data);
+
+            // Redirect to Upcoming Events page after successful creation
+            router.push("/events");
+
+        } catch (error) {
+            console.error("Event creation failed:", error);
+
+        } finally {
+            setIsLoading(false);
         }
-        console.log("Event Data:", eventAndUserData);
-
-        const res = await fetch("http://localhost:5000/create-event", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(eventAndUserData)
-        });
-
-        const data = await res.json();
-        console.log(data);
     };
 
     return (
@@ -160,7 +186,7 @@ const CreateEvent = () => {
                                         <option value="Volunteering">Volunteering</option>
                                         <option value="Cleanup">Cleanup</option>
                                         <option value="Education">Education</option>
-                                        <option value="Tree Plantation">Tree Plantation</option>
+                                        <option value="Plantation">Plantation</option>
                                         <option value="Healthcare">Healthcare</option>
                                         <option value="Other">Other</option>
                                     </select>
@@ -311,10 +337,20 @@ const CreateEvent = () => {
                         {/* Publish Event Button */}
                         <button
                             type="submit"
-                            className="w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-[#F07800] hover:bg-[#DB6C00] text-white font-inter text-[13px] font-semibold shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer"
+                            disabled={isLoading}
+                            className="w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-[#F07800] hover:bg-[#DB6C00] text-white font-inter text-[13px] font-semibold shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.99] cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100"
                         >
-                            <Sparkles size={15} />
-                            Publish Event
+                            {isLoading ? (
+                                <>
+                                    <LoaderCircle size={15} className="animate-spin" />
+                                    Publishing Event...
+                                </>
+                            ) : (
+                                <>
+                                    <Sparkles size={15} />
+                                    Publish Event
+                                </>
+                            )}
                         </button>
 
                     </form>
