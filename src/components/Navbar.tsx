@@ -30,8 +30,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, LogIn } from "lucide-react";
-import { IoMoonOutline } from "react-icons/io5";
-import { HiOutlineMoon } from "react-icons/hi";
 import { BiMoon } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
@@ -228,7 +226,7 @@ export default function Navbar() {
                                   alt="User"
                                   className="object-cover"
                                 />
-                                <AvatarFallback className="bg-[#DDF8E6] text-[#FF8500]">
+                                <AvatarFallback className="bg-[#282828] text-[#fff7ef]">
                                   {user?.name?.charAt(0) || "U"}
                                 </AvatarFallback>
                               </Avatar>
