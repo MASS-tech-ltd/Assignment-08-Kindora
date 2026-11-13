@@ -44,7 +44,7 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
     label: "Facebook",
     href: "#",
     icon: (
-      <svg viewBox="0 0 24 24" className="lg:size-[16px] md:size-[12px] size-[10px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg viewBox="0 0 24 24" className="lg:size-[14px] md:size-[12px] size-[10px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
       </svg>
     ),
@@ -53,7 +53,7 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
     label: "X",
     href: "#",
     icon: (
-      <svg viewBox="0 0 24 24" className="lg:size-[14px] md:size-[10px] size-[8px]" fill="currentColor" fillRule="evenodd" aria-hidden>
+      <svg viewBox="0 0 24 24" className="lg:size-[12px] md:size-[10px] size-[8px]" fill="currentColor" fillRule="evenodd" aria-hidden>
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
       </svg>
     ),
@@ -62,7 +62,7 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
     label: "YouTube",
     href: "#",
     icon: (
-      <svg viewBox="0 0 24 24" className="lg:size-[18px] md:size-[15px] size-[12px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg viewBox="0 0 24 24" className="lg:size-[16px] md:size-[15px] size-[12px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0" />
         <path d="m10 15 5-3-5-3z" />
       </svg>
@@ -72,7 +72,7 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
     label: "LinkedIn",
     href: "#",
     icon: (
-      <svg viewBox="0 0 24 24" className="lg:size-[18px] md:size-[13px] size-[10px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <svg viewBox="0 0 24 24" className="lg:size-[15px] md:size-[13px] size-[10px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
         <rect x="2" y="9" width="4" height="12" />
         <circle cx="4" cy="4" r="2" />
@@ -126,11 +126,11 @@ export default function Navbar() {
             }`}
         >
           <div className="flex max-w-full items-center border-t border-t-[#2b2b2b] rounded-t-[26px]
-                          bg-[#dd7200] lg:px-5 md:px-4 lg:py-0.5 md:py-0 py-0 lg:text-[12px] md:text-[10px] text-[9px] font-normal
+                          bg-[#dd7200] lg:px-5 md:px-4 lg:py-0 md:py-0 py-0 lg:text-[11px] md:text-[10px] text-[9px] font-normal
                           text-white shadow-[0_12px_30px_rgba(0,0,0,0.18)]
                           lg:gap-8 md:gap-3 gap-1.5 px-5">
             <p className="flex min-w-0 items-center gap-2">
-              <span aria-hidden className="lg:text-base md:text-sm text-[10px]">🤝</span>
+              <span aria-hidden className=" md:text-xs text-[10px]">🤝</span>
               <span className="truncate hidden md:block">Are you prepared to assist them? Let&apos;s volunteer....</span>
             </p>
             <div className="shrink-0 items-center lg:gap-3 md:gap-2 gap-2 flex">
