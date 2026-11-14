@@ -52,7 +52,7 @@ const VisualStories = () => {
             <div className="mx-auto max-w-7xl px-5 md:px-8">
 
                 {/* Section Heading */}
-                <div className=" mb-8 flex flex-col justify-between gap-3.5 md:mb-10 md:flex-row md:items-end">
+                <div className=" mb-8 flex flex-col justify-between gap-3.5 md:mb-8 md:flex-row md:items-end">
 
                     <div>
                         <div className="md:mb-3 mb-2 flex items-center gap-3">
@@ -72,16 +72,16 @@ const VisualStories = () => {
 
                     <a
                         href="#"
-                        className="group inline-flex items-center gap-2 rounded-full bg-[#F5A704]
-                                    lg:px-7 lg:py-3.5 md:px-6 md:py-2.75 px-4 py-1.5 lg:text-[15px] md:text-[13px]
-                                    text-[11px] font-semibold text-white border border-[#999999]
-                                    transition-all duration-200 ease-out
-                                    hover:-translate-y-0.5 hover:shadow-[0_3px_0_#444444]
+                        className="flex gap-1.5 items-center md:text-[15px]
+                                    text-[13px] font-semibold text-[#FF8500] hover:text-[#e97901]
+                                    transition-all duration-200
+                                    hover:-translate-y-0.5
                                     active:translate-y-0 active:shadow-none w-fit"
                     >
                         View All Stories
                         <ArrowUpRight
-                            className="lg:size-4 md:size-3.5 size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            className="md:size-4 font-bold size-3.5
+                            transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                             aria-hidden
                         />
                     </a>

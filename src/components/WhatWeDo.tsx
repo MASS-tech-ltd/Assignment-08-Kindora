@@ -33,7 +33,7 @@ const features = [
 
 const WhatWeDo = () => {
     return (
-        <section className="bg-white px-5 py-16 sm:px-8 md:px-10 mt-32 md:mt-42 lg:mt-60">
+        <section className="bg-white px-5 py-16 sm:px-8 md:px-10 mt-6 md:mt-10 lg:mt-20">
             <div className="mx-auto grid max-w-[1310px] grid-cols-1 items-center gap-0 lg:grid-cols-[630px_1fr] lg:gap-9">
 
                 {/* Heading */}
@@ -61,7 +61,7 @@ const WhatWeDo = () => {
                         alt="pricing-sh"
                         width={180}
                         height={0}
-                        className="floating-big-heart absolute lg:w-40 md:w-30 min-[425px]:w-25 min-[375px]:w-20 lg:top-630 md:top-760 min-[425px]:top-933 min-[375px]:top-955
+                        className="floating-big-heart absolute lg:w-40 md:w-30 min-[425px]:w-25 min-[375px]:w-20 lg:top-1015 md:top-1308 min-[425px]:top-1925 min-[375px]:top-1980
                                    lg:left-10 md:left-150 min-[375px]:left-68 min-[425px]:left-75"
                     />
                 </div>
@@ -71,15 +71,16 @@ const WhatWeDo = () => {
                     {/* Donate Now Button */}
                     <a
                         href="/donate"
-                        className="absolute top-[9%] lg:left-20 md:left-14 left-4 z-20 flex h-[175px] w-[48px]
+                        className="absolute top-[9%] lg:top-[9%]
+                                   lg:left-20 md:left-14 left-5 z-20 flex 
+                                   md:px-2.5 md:py-7 px-2 py-5.5
                                    flex-col items-center justify-center gap-2 rounded-xl 
-                                   bg-[#F5A704] text-white shadow-sm sm:h-[190px] 
-                                   sm:w-[55px] lg:top-[9%] lg:h-[212px] lg:w-[55px]
+                                   bg-[#F5A704] text-white shadow-sm 
                                    border border-[#999999] transition-all duration-200 ease-out
                                     hover:-translate-y-0.5 hover:shadow-[0_4px_0_#444444]
                                     active:translate-y-0 active:shadow-none w-fit"
                     >
-                        <span className="rotate-180 text-base font-bold [writing-mode:vertical-rl]">
+                        <span className="rotate-180 md:text-base text-sm font-bold [writing-mode:vertical-rl]">
                             Donate Now
                         </span>
 
