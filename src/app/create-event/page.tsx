@@ -16,6 +16,8 @@ import {
     LoaderCircle,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import getTokenFromClient from "@/lib/getTokenFromClient";
+
 
 // Get tomorrow's date according to Bangladesh timezone
 const getTomorrowDate = () => {
@@ -46,43 +48,49 @@ const CreateEvent = () => {
     const { data: session } = authClient.useSession()
     const user = session?.user;
 
+
+
     const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        const form = event.currentTarget;
 
         setIsLoading(true);
 
         try {
-            const formData = new FormData(event.currentTarget);
+            // Get JWT token
+            const token = await getTokenFromClient();
 
+            // Get form data
+            const formData = new FormData(form);
             const eventData = Object.fromEntries(formData.entries());
 
-            // console.log("Event Data:", eventData);
-
+            // Combine user and event data
             const eventAndUserData = {
                 ...user,
                 ...eventData,
                 joinDate: new Date(),
-            }
+            };
 
-            console.log("Event Data:", eventAndUserData);
-
+            // Send event data to backend
             const res = await fetch("http://localhost:5000/create-event", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify(eventAndUserData)
+                body: JSON.stringify(eventAndUserData),
             });
 
-            const data = await res.json();
+            const result = await res.json();
 
             if (!res.ok) {
-                throw new Error(data.message || "Failed to create event");
+                throw new Error(result.message || "Failed to create event");
             }
 
-            console.log(data);
+            console.log("Event created successfully:", result);
 
-            // Redirect to Upcoming Events page after successful creation
+            // Redirect to Upcoming Events page
             router.push("/events");
 
         } catch (error) {
@@ -92,6 +100,8 @@ const CreateEvent = () => {
             setIsLoading(false);
         }
     };
+
+
 
     return (
         <section className="login-section min-h-screen px-4 lg:pt-36 md:pt-30 pt-26 lg:pb-20 md:pb-18 pb-16">

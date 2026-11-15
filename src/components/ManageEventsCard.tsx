@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 import {
     ArrowRight,
@@ -45,6 +46,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import { Bounce, toast } from "react-toastify";
+import getTokenFromClient from "@/lib/getTokenFromClient";
 
 
 // Get tomorrow's date according to Bangladesh timezone
@@ -111,6 +113,8 @@ const eventTypeStyles: Record<string, { text: string; bg: string }> = {
 
 const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
 
+    const router = useRouter();
+
     const minEventDate = getTomorrowDate();
 
     // Edit modal state
@@ -127,7 +131,7 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
 
 
     // Handle Event Update
-    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleEventUpdate = async (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
 
@@ -138,11 +142,13 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
         console.log("Event updated Data:", updatedEventData);
 
         try {
+            const token = await getTokenFromClient();
 
             const res = await fetch(`http://localhost:5000/events/${currentEvent._id}`, {
                 method: "PATCH",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(updatedEventData)
             });
@@ -195,9 +201,12 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
     const handleDeleteEvent = async () => {
 
         try {
-
+            const token = await getTokenFromClient();
             const res = await fetch(`http://localhost:5000/events/${currentEvent._id}`, {
                 method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
             });
 
             if (!res.ok) {
@@ -216,7 +225,9 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
                 // Remove deleted event card instantly
                 setIsDeleted(true);
 
-                // Show success toast
+                // Refresh server component to get updated events
+                router.refresh();
+
                 toast.success("Event deleted successfully!", {
                     position: "top-center",
                     autoClose: 1500,
@@ -392,7 +403,7 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
 
 
                             {/* Custom Edit Form */}
-                            <form onSubmit={handleFormSubmit} className="space-y-5">
+                            <form onSubmit={handleEventUpdate} className="space-y-5">
 
                                 {/* Event Title */}
                                 <div>
@@ -451,7 +462,7 @@ const ManageEventsCard = ({ eventData }: { eventData: EventDataTypes }) => {
                                                 <option value="Volunteering">Volunteering</option>
                                                 <option value="Cleanup">Cleanup</option>
                                                 <option value="Education">Education</option>
-                                                <option value="Tree Plantation">Tree Plantation</option>
+                                                <option value="Plantation">Plantation</option>
                                                 <option value="Healthcare">Healthcare</option>
                                                 <option value="Other">Other</option>
                                             </select>

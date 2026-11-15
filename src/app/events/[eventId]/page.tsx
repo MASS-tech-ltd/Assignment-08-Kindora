@@ -3,19 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import {
     ArrowLeft,
-    ArrowRight,
     CalendarDays,
     MapPin,
-    Users,
     Heart,
-    Share2,
     Mail,
     CheckCircle2,
-    ShieldCheck,
 } from "lucide-react";
 import { EventDataTypes } from "@/app/types/eventTypes";
-import JoinEventButton from "@/components/JoinEvent/JoinEventButton";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import VolunteerSection from "@/components/JoinEvent/VolunteerSection";
 
 const eventTypeStyles: Record<string, { text: string; bg: string }> = {
     Donation: {
@@ -59,8 +55,9 @@ const eventTypeStyles: Record<string, { text: string; bg: string }> = {
     },
 };
 
-const EventDetailsPage = async ({params}: {
-    params: Promise<{ eventId: string }>}) => {
+const EventDetailsPage = async ({ params }: {
+    params: Promise<{ eventId: string }>
+}) => {
 
     const { eventId } = await params;
 
@@ -139,32 +136,8 @@ const EventDetailsPage = async ({params}: {
                 <div className="rounded-b-[20px] bg-white px-4 pb-5 pt-5 shadow-[0_8px_25px_rgba(0,0,0,0.06)] sm:px-6">
 
                     {/* Volunteers & Join Event */}
-                    <div className="mb-5 flex min-[425px]:flex min-[375px]:block flex-wrap items-center
-                                    justify-between gap-3 border border-[#e9edef] 
-                                    bg-[#fafcfc] px-5 py-3
-                                    rounded-full min-[425px]:rounded-full min-[375px]:rounded-xl">
 
-                        <div className="flex min-w-0 items-center gap-2.5">
-
-                            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#f6f1e8] text-[#FF8500]">
-                                <Users size={18} />
-                            </div>
-
-                            <div>
-                                <h3 className="font-poppins text-[11px] font-bold text-[#303c49]">
-                                    0 Volunteers Joined
-                                </h3>
-
-                                <p className="font-inter text-[10px] text-[#929ba5]">
-                                    Sign up to join hands for this drive
-                                </p>
-                            </div>
-
-                        </div>
-                        {/* Join event button */}
-                        <JoinEventButton key={eventData._id} eventData={eventData}></JoinEventButton>
-
-                    </div>
+                    <VolunteerSection eventData={eventData} />
 
                     {/* Details Grid */}
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-[1fr_180px] sm:gap-5">
@@ -227,20 +200,32 @@ const EventDetailsPage = async ({params}: {
 
                             {/* Organizer Info */}
                             <div className="flex items-center gap-2">
-
+                                {/* 
                                 <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#f5efe9] font-poppins text-[12px] font-bold text-[#FF8500]">
                                     D
-                                </div>
+                                </div> */}
+
+                                <Avatar className="cursor-pointer w-8 h-8 md:w-9 md:h-9 lg:w-9 lg:h-9 border-2 border-[#FF8500] shadow-sm">
+                                    <AvatarImage
+                                        referrerPolicy="no-referrer"
+                                        src={eventData?.image as string}
+                                        alt="User"
+                                        className="object-cover"
+                                    />
+                                    <AvatarFallback className="bg-[#f5efe9] text-base font-semibold text-[#FF8500]">
+                                        {eventData?.name?.charAt(0) || "U"}
+                                    </AvatarFallback>
+                                </Avatar>
 
                                 <div className="min-w-0">
 
-                                    <h4 className="truncate font-poppins text-[11px] font-bold text-[#343d49]">
-                                        Dolore expedita dese
+                                    <h4 className="truncate font-poppins text-[12px] font-bold text-[#343d49]">
+                                        {eventData.name || "Community Volunteers"}
                                     </h4>
 
-                                    <p className="mt-1 flex items-center gap-1 font-inter text-[8.5px] text-[#929ba5]">
+                                    <p className="mt-0 flex items-center gap-1 font-inter text-[10px] text-[#929ba5]">
                                         <Mail size={9} />
-                                        mypit@mailinator.com
+                                        {eventData.email || "organizer@gmail.com"}
                                     </p>
 
                                 </div>

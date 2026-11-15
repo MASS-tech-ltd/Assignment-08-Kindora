@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/avatar";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, LogIn } from "lucide-react";
 import { BiMoon } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
@@ -86,6 +86,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
+  const router = useRouter();
+
   const { data: session } = authClient.useSession()
   const user = session?.user;
 
@@ -110,6 +112,7 @@ export default function Navbar() {
       transition: Bounce,
     });
 
+    router.push("/");
   };
 
 
