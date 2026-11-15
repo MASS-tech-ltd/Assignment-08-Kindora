@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -43,8 +42,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col font-poppins">
 
-        <ThemeProvider>
-
           <Navbar />
 
           <main className="flex-1">
@@ -53,8 +50,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </main>
 
           <Footer />
-
-        </ThemeProvider>
 
       </body>
     </html>
