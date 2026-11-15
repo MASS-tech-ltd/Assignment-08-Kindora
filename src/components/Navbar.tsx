@@ -30,10 +30,11 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, LogIn } from "lucide-react";
-import { BiMoon } from "react-icons/bi";
+import { BiMoon, BiSun } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import { Bounce, toast } from "react-toastify";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
   { label: "Upcoming Events", href: "/events" },
@@ -82,6 +83,8 @@ const socialLinks: { label: string; href: string; icon: ReactNode }[] = [
 ];
 
 export default function Navbar() {
+
+  const { theme, toggleTheme } = useTheme();
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -192,16 +195,21 @@ export default function Navbar() {
           </ul>
 
           {/* Theme changing icon */}
+          {/* Theme changing icon */}
           <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
             className={`md:text-lg text-xs flex justify-center items-center
-                      bg-[#8c8b8a]/10 
-                      text-[#8c8b8a] md:w-8 md:h-8 w-4.5 h-4.5
-                        rounded-full transition-all duration-200
-                      hover:bg-[#8c8b8a]/15
-                        active:scale-90 cursor-pointer
-                        ${user ? "md:mr-3.5 mr-2.5" : ""}`}
+            bg-[#8c8b8a]/10
+            text-[#8c8b8a] md:w-8 md:h-8 w-4.5 h-4.5
+              rounded-full transition-all duration-200
+            hover:bg-[#8c8b8a]/15
+              active:scale-90 cursor-pointer
+               ${user ? "md:mr-3.5 mr-2.5" : ""}`}
           >
-            <BiMoon />
+            {theme === "light" ? <BiMoon /> : <BiSun />}
           </button>
 
           {/* User section */}

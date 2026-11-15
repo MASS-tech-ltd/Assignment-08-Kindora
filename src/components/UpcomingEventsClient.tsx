@@ -79,13 +79,24 @@ const UpcomingEventsClient = ({
     // Selected Category
     const [selectedCategory, setSelectedCategory] = useState("All");
 
-    // Filter Events Based on Selected Category
-    const filteredEvents =
-        selectedCategory === "All"
-            ? allData
-            : allData.filter(
-                (data) => data.eventType === selectedCategory
-            );
+    // Search Event by Title
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // Filter Events Based on Selected Category and Search
+    const filteredEvents = allData.filter((data) => {
+
+        const matchesCategory =
+            selectedCategory === "All" ||
+            data.eventType === selectedCategory;
+
+        const matchesSearch =
+            data.eventTitle
+                .toLowerCase()
+                .includes(searchTerm.trim().toLowerCase());
+
+        return matchesCategory && matchesSearch;
+
+    });
 
     return (
 
@@ -201,7 +212,10 @@ const UpcomingEventsClient = ({
 
                     {/* Search Input */}
 
-                    <div className="flex h-[34px] w-full max-w-[192px] items-center gap-2 rounded-full border border-[#e5e7eb] bg-white px-3 shadow-[0_2px_5px_rgba(0,0,0,0.04)] transition-all duration-200 focus-within:border-[#FF8500]">
+                    <div className="flex h-[34px] w-full max-w-[192px] items-center gap-2 
+                    rounded-full border border-[#e5e7eb] bg-white px-3 
+                    shadow-[0_2px_5px_rgba(0,0,0,0.04)] transition-all duration-200
+                     focus-within:border-[#FF8500]">
 
                         <Search
 
@@ -215,9 +229,13 @@ const UpcomingEventsClient = ({
 
                             type="text"
 
+                            value={searchTerm}
+
+                            onChange={(e) => setSearchTerm(e.target.value)}
+
                             placeholder="Search events or areas..."
 
-                            className="w-full bg-transparent text-[10px] text-[#374151] outline-none placeholder:text-[#9ca3af]"
+                            className="w-full bg-transparent text-[11px] text-[#374151] outline-none placeholder:text-[#9ca3af]"
 
                         />
 
@@ -415,7 +433,7 @@ const UpcomingEventsClient = ({
 
                             <p className="font-poppins text-sm font-semibold text-[#78818e]">
 
-                                No {selectedCategory} events available right now.
+                                No events found. Try another search or category.
 
                             </p>
 
@@ -430,6 +448,7 @@ const UpcomingEventsClient = ({
         </section>
 
     );
+
 };
 
 export default UpcomingEventsClient;

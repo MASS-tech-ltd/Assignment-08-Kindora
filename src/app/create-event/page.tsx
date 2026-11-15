@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import getTokenFromClient from "@/lib/getTokenFromClient";
+import { Bounce, toast } from "react-toastify";
 
 
 // Get tomorrow's date according to Bangladesh timezone
@@ -89,6 +90,18 @@ const CreateEvent = () => {
             }
 
             console.log("Event created successfully:", result);
+            // Success Toast
+            toast.success("Login successful!", {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
 
             // Redirect to Upcoming Events page
             router.push("/events");

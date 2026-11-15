@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kindora – Together, We Can Make a Difference
 
-## Getting Started
+Kindora is a social development and community event platform that brings people together to create positive change. Users can explore upcoming social events, participate in community initiatives, and organize events to make a meaningful impact.
 
-First, run the development server:
+## 🌐 Live Website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Live Site:** [Add Your Live Website URL Here---------------------------------]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Explore Upcoming Events:** Browse upcoming social development events, including Donation,  Cleanup, Plantation, Winter Relief, and more.
+- **Event Details:** View detailed information about each event, including date, location, description, and organizer information.
+- **User Authentication:** Securely register and log in to your account to access personalized features.
+- **Create Events:** Authenticated users can create and organize their own community events.
+- **Join Events:** Logged-in users can join events and participate in different social activities.
+- **Manage Created Events:** Organizers can view, update, and delete the events they have created.
+- **Track Joined Events:** Users can view the events they have joined and check their participation information.
+- **Search and Filter:** Find events easily by searching event titles and filtering by category.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Technologies Used
 
-## Learn More
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Express.js
+- MongoDB
+- Better Auth
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Project Goal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The goal of Kindora is to make community participation easier by connecting people with meaningful social initiatives and encouraging them to work together for a better society.
