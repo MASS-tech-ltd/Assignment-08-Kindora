@@ -5,9 +5,7 @@ import {
     ArrowUpRight,
     AwardIcon,
     CalendarDays,
-    CirclePlus,
     MapPin,
-    Search,
     Users,
 } from "lucide-react";
 import Image from "next/image";
@@ -67,7 +65,7 @@ const eventTypeStyles: Record<string, { text: string; bg: string }> = {
 
 
 const RecentUpcomingEvents = async () => {
-    const res = await fetch('http://localhost:5000/home-events');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/home-events`);
     const recentEventsData: EventDataTypes[] = await res.json();
     console.log(recentEventsData);
     return (

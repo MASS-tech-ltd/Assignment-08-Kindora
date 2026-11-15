@@ -23,7 +23,7 @@ const VolunteerSection = ({ eventData }: VolunteerSectionProps) => {
 
         const getVolunteerCount = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/events/${eventData._id}/volunteer-count`,
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${eventData._id}/volunteer-count`,
                     { cache: "no-store" }
                 );
 

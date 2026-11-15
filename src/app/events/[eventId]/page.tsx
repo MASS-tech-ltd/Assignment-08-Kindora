@@ -61,7 +61,7 @@ const EventDetailsPage = async ({ params }: {
 
     const { eventId } = await params;
 
-    const res = await fetch(`http://localhost:5000/events/${eventId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${eventId}`);
 
     const eventData: EventDataTypes = await res.json();
 

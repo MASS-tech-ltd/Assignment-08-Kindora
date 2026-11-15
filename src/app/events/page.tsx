@@ -4,7 +4,7 @@ import { EventDataTypes } from "../types/eventTypes";
 
 
 const UpcomingEvents = async () => {
-    const res = await fetch("http://localhost:5000/events");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`);
 
     const allData: EventDataTypes[] = await res.json();
 

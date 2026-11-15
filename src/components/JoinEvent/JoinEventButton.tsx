@@ -53,7 +53,7 @@ const JoinEventButton = ({
                 const token = await getTokenFromClient();
 
                 const res = await fetch(
-                    `http://localhost:5000/events/${eventData._id}/join-status`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/events/${eventData._id}/join-status`,
                     {
                         headers: {
                             authorization: `Bearer ${token}`,
@@ -124,7 +124,7 @@ const JoinEventButton = ({
 
             const token = await getTokenFromClient();
 
-            const res = await fetch("http://localhost:5000/join-event", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/join-event`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
