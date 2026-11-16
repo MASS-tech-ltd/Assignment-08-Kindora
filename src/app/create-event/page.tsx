@@ -211,6 +211,7 @@ const CreateEvent = () => {
                                         <option value="Education">Education</option>
                                         <option value="Plantation">Plantation</option>
                                         <option value="Healthcare">Healthcare</option>
+                                        <option value="Food Drive">Food Drive</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>

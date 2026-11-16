@@ -21,7 +21,7 @@ const stories = [
         location: "Dhanmondi, Dhaka",
         description:
             "We planted trees to build a greener and healthier Bangladesh for future generations.",
-        image: "/images/Tree-pantation.png",
+        image: "/images/tree-pantation.png",
         date: "Jul 12, 2025",
     },
     {
@@ -71,7 +71,6 @@ const VisualStories = () => {
                     </div>
 
                     <a
-                        href="#"
                         className="flex gap-1.5 items-center md:text-[15px]
                                     text-[13px] font-semibold text-[#FF8500] hover:text-[#e97901]
                                     transition-all duration-200

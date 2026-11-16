@@ -51,7 +51,7 @@ const eventTypeStyles: Record<string, { text: string; bg: string }> = {
         bg: "bg-[#0891B2]/30",
     },
 
-    "Winter Relief": {
+    Other: {
         text: "text-[#A084D1]",
         bg: "bg-[#7952B8]/30",
     },
@@ -61,7 +61,7 @@ const eventTypeStyles: Record<string, { text: string; bg: string }> = {
         bg: "bg-[#D97706]/30",
     },
 
-    "Health Camp": {
+    Healthcare: {
         text: "text-[#E77979]",
         bg: "bg-[#DC4444]/30",
     },

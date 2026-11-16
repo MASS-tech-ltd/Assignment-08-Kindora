@@ -70,7 +70,6 @@ const WhatWeDo = () => {
 
                     {/* Donate Now Button */}
                     <a
-                        href="/donate"
                         className="absolute top-[9%] lg:top-[9%]
                                    lg:left-20 md:left-14 left-5 z-20 flex 
                                    md:px-2.5 md:py-7 px-2 py-5.5
@@ -104,12 +103,10 @@ const WhatWeDo = () => {
                                     overflow-hidden rounded-full border-[6px] 
                                     border-white sm:size-[215px] md:size-[235px] 
                                     lg:bottom-[11%] md:left-[-30px] lg:size-[266px]">
-                        <Image
+                        <img
                             src="/images/rounded-image.jfif"
                             alt="A happy child holding a heart"
-                            fill
-                            sizes="(max-width: 768px) 235px, 266px"
-                            className="object-cover object-center"
+                            className="h-full w-full object-cover object-center"
                         />
                     </div>
                 </div>

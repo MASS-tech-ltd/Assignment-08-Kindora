@@ -4,7 +4,7 @@ Kindora is a social development and community event platform that brings people 
 
 ## 🌐 Live Website
 
-**Live Site:** [Add Your Live Website URL Here---------------------------------]
+**Live Site:**     https://kindora-frontend-puce.vercel.app
 
 ## ✨ Key Features
 
